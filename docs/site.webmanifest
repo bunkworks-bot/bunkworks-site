@@ -1,0 +1,26 @@
+{
+ "name": "Bunkworks \u2014 Furniture for spaces that work",
+ "short_name": "Bunkworks",
+ "start_url": "/",
+ "display": "browser",
+ "background_color": "#F6F2EA",
+ "theme_color": "#15120F",
+ "icons": [
+  {
+   "src": "/images/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "/images/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "/images/icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}
