@@ -1,0 +1,82 @@
+# Bunkworks — Apache / cPanel hosting alternative to Netlify _redirects and _headers
+RewriteEngine On
+
+# Force HTTPS + www
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\.bunkworks\.com$ [NC]
+RewriteRule ^(.*)$ https://www.bunkworks.com/$1 [L,R=301]
+
+# Alternate URLs -> canonical pages
+RewriteRule ^bunk\-beds/?$ /bunker-cot-double-decker-bed/ [R=301,L]
+RewriteRule ^bunk\-bed/?$ /bunker-cot-double-decker-bed/ [R=301,L]
+RewriteRule ^bunk\-beds/?$ /bunker-cot-double-decker-bed/ [R=301,L]
+RewriteRule ^bunker\-cot/?$ /bunker-cot-double-decker-bed/ [R=301,L]
+RewriteRule ^bunker\-cots/?$ /bunker-cot-double-decker-bed/ [R=301,L]
+RewriteRule ^double\-decker\-bed/?$ /bunker-cot-double-decker-bed/ [R=301,L]
+RewriteRule ^double\-decker\-beds/?$ /bunker-cot-double-decker-bed/ [R=301,L]
+RewriteRule ^double\-decker\-cot/?$ /bunker-cot-double-decker-bed/ [R=301,L]
+RewriteRule ^double\-decker\-cots/?$ /bunker-cot-double-decker-bed/ [R=301,L]
+RewriteRule ^double\-decker/?$ /bunker-cot-double-decker-bed/ [R=301,L]
+RewriteRule ^bunker\-cot\-price/?$ /bunker-cot-double-decker-bed/ [R=301,L]
+RewriteRule ^bunk\-bed\-price/?$ /bunker-cot-double-decker-bed/ [R=301,L]
+RewriteRule ^double\-decker\-bed\-price/?$ /bunker-cot-double-decker-bed/ [R=301,L]
+RewriteRule ^single\-cots/?$ /steel-single-cot/ [R=301,L]
+RewriteRule ^single\-cot/?$ /steel-single-cot/ [R=301,L]
+RewriteRule ^single\-bed/?$ /steel-single-cot/ [R=301,L]
+RewriteRule ^single\-beds/?$ /steel-single-cot/ [R=301,L]
+RewriteRule ^iron\-cot/?$ /steel-single-cot/ [R=301,L]
+RewriteRule ^steel\-cot/?$ /steel-single-cot/ [R=301,L]
+RewriteRule ^steel\-cots/?$ /steel-single-cot/ [R=301,L]
+RewriteRule ^cot\-price/?$ /steel-single-cot/ [R=301,L]
+RewriteRule ^single\-cot\-price/?$ /steel-single-cot/ [R=301,L]
+RewriteRule ^bulk/?$ /bulk-quote/ [R=301,L]
+RewriteRule ^bulk\-order/?$ /bulk-quote/ [R=301,L]
+RewriteRule ^bulk\-orders/?$ /bulk-quote/ [R=301,L]
+RewriteRule ^bulk\-order\-quote/?$ /bulk-quote/ [R=301,L]
+RewriteRule ^wholesale/?$ /bulk-quote/ [R=301,L]
+RewriteRule ^quote/?$ /bulk-quote/ [R=301,L]
+RewriteRule ^get\-a\-quote/?$ /bulk-quote/ [R=301,L]
+RewriteRule ^enquiry/?$ /bulk-quote/ [R=301,L]
+RewriteRule ^blogs/?$ /blog/ [R=301,L]
+RewriteRule ^articles/?$ /blog/ [R=301,L]
+RewriteRule ^guides/?$ /blog/ [R=301,L]
+RewriteRule ^news/?$ /blog/ [R=301,L]
+RewriteRule ^about\-us/?$ /about/ [R=301,L]
+RewriteRule ^aboutus/?$ /about/ [R=301,L]
+RewriteRule ^company/?$ /about/ [R=301,L]
+RewriteRule ^contact\-us/?$ /contact/ [R=301,L]
+RewriteRule ^contactus/?$ /contact/ [R=301,L]
+RewriteRule ^privacy/?$ /privacy-policy/ [R=301,L]
+RewriteRule ^privacy\-policy\.html/?$ /privacy-policy/ [R=301,L]
+RewriteRule ^terms\-and\-conditions/?$ /terms/ [R=301,L]
+RewriteRule ^terms\-conditions/?$ /terms/ [R=301,L]
+RewriteRule ^terms\-of\-service/?$ /terms/ [R=301,L]
+RewriteRule ^tos/?$ /terms/ [R=301,L]
+RewriteRule ^shipping/?$ /shipping-delivery/ [R=301,L]
+RewriteRule ^delivery/?$ /shipping-delivery/ [R=301,L]
+RewriteRule ^shipping\-policy/?$ /shipping-delivery/ [R=301,L]
+RewriteRule ^sitemap\.html/?$ /sitemap/ [R=301,L]
+RewriteRule ^site\-map/?$ /sitemap/ [R=301,L]
+RewriteRule ^index\.html/?$ / [R=301,L]
+RewriteRule ^home/?$ / [R=301,L]
+
+ErrorDocument 404 /404.html
+DirectoryIndex index.html
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType text/css "access plus 1 day"
+  ExpiresByType application/javascript "access plus 1 day"
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json application/xml text/plain image/svg+xml
+</IfModule>

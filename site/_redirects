@@ -1,0 +1,62 @@
+# Bunkworks redirects (Netlify _redirects). Domain canonical: https://www.bunkworks.com
+
+# 1. Force HTTPS and the www host
+http://bunkworks.com/*      https://www.bunkworks.com/:splat  301!
+http://www.bunkworks.com/*  https://www.bunkworks.com/:splat  301!
+https://bunkworks.com/*     https://www.bunkworks.com/:splat  301!
+
+# 2. Alternate and old URLs -> canonical pages (301)
+/bunk-beds/                        /bunker-cot-double-decker-bed/  301
+/bunk-bed/                         /bunker-cot-double-decker-bed/  301
+/bunk-beds                         /bunker-cot-double-decker-bed/  301
+/bunker-cot/                       /bunker-cot-double-decker-bed/  301
+/bunker-cots/                      /bunker-cot-double-decker-bed/  301
+/double-decker-bed/                /bunker-cot-double-decker-bed/  301
+/double-decker-beds/               /bunker-cot-double-decker-bed/  301
+/double-decker-cot/                /bunker-cot-double-decker-bed/  301
+/double-decker-cots/               /bunker-cot-double-decker-bed/  301
+/double-decker/                    /bunker-cot-double-decker-bed/  301
+/bunker-cot-price/                 /bunker-cot-double-decker-bed/  301
+/bunk-bed-price/                   /bunker-cot-double-decker-bed/  301
+/double-decker-bed-price/          /bunker-cot-double-decker-bed/  301
+/single-cots/                      /steel-single-cot/  301
+/single-cot/                       /steel-single-cot/  301
+/single-bed/                       /steel-single-cot/  301
+/single-beds/                      /steel-single-cot/  301
+/iron-cot/                         /steel-single-cot/  301
+/steel-cot/                        /steel-single-cot/  301
+/steel-cots/                       /steel-single-cot/  301
+/cot-price/                        /steel-single-cot/  301
+/single-cot-price/                 /steel-single-cot/  301
+/bulk/                             /bulk-quote/  301
+/bulk-order/                       /bulk-quote/  301
+/bulk-orders/                      /bulk-quote/  301
+/bulk-order-quote/                 /bulk-quote/  301
+/wholesale/                        /bulk-quote/  301
+/quote/                            /bulk-quote/  301
+/get-a-quote/                      /bulk-quote/  301
+/enquiry/                          /bulk-quote/  301
+/blogs/                            /blog/  301
+/articles/                         /blog/  301
+/guides/                           /blog/  301
+/news/                             /blog/  301
+/about-us/                         /about/  301
+/aboutus/                          /about/  301
+/company/                          /about/  301
+/contact-us/                       /contact/  301
+/contactus/                        /contact/  301
+/privacy/                          /privacy-policy/  301
+/privacy-policy.html               /privacy-policy/  301
+/terms-and-conditions/             /terms/  301
+/terms-conditions/                 /terms/  301
+/terms-of-service/                 /terms/  301
+/tos/                              /terms/  301
+/shipping/                         /shipping-delivery/  301
+/delivery/                         /shipping-delivery/  301
+/shipping-policy/                  /shipping-delivery/  301
+/sitemap.html                      /sitemap/  301
+/site-map/                         /sitemap/  301
+/index.html                        /  301
+/home/                             /  301
+
+# Old blog paths without trailing slash are handled automatically by Netlify "pretty URLs".
