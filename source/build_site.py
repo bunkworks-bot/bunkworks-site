@@ -299,6 +299,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 26px;background:var(--cre
 .price-card h3{font-size:1.15rem;margin:10px 0 4px}
 .price-card .aka{font-size:.84rem;color:var(--muted)}
 .big-price{margin:14px 0 4px;font:800 2.1rem/1 'Montserrat',sans-serif;color:var(--ink)}
+.price-regular{display:inline-block;font:600 .78rem/1.2 'Inter',sans-serif;color:var(--muted);margin-left:8px;vertical-align:middle}
 .big-price s{font:600 1rem 'Inter',sans-serif;color:var(--muted);margin-left:8px}
 .per{font-size:.82rem;color:var(--muted)}
 .price-card ul{margin:12px 0 16px;padding-left:1.1em;font-size:.88rem;color:var(--muted)}
@@ -577,8 +578,8 @@ def post_card(p, sizes='(min-width:980px) 33vw, (min-width:680px) 50vw, 100vw'):
 </article>'''
 
 HOME_FAQ = [
- ('What is the price of a bunk bed (bunker cot / double decker bed) at Bunkworks?', (f'₹{B} per piece in the 5th Anniversary Offer (MRP ₹{BR}, {OFFER["off_pct"]}% off) while stock lasts. ' if ACTIVE else f'₹{PB} per piece. ') + f'Orders of more than {OFFER["bulk_min"]} pieces get a bulk quote. Prices are per piece, without mattress.'),
- ('What is the price of a steel single cot?', (f'₹{S} per piece in the 5th Anniversary Offer (MRP ₹{SR}, {OFFER["off_pct"]}% off) while stock lasts. ' if ACTIVE else f'₹{PS} per piece. ') + 'It is 6 × 2.5 ft with a galvanised steel frame, a 12mm plywood base and a load capacity of up to 100 kg.'),
+ ('What is the price of a bunk bed (bunker cot / double decker bed) at Bunkworks?', (f'₹{B} per piece in the 5th Anniversary Offer (regular price ₹{BR}, {OFFER["off_pct"]}% off) while stock lasts. ' if ACTIVE else f'₹{PB} per piece. ') + f'Orders of more than {OFFER["bulk_min"]} pieces get a bulk quote. Prices are per piece, without mattress.'),
+ ('What is the price of a steel single cot?', (f'₹{S} per piece in the 5th Anniversary Offer (regular price ₹{SR}, {OFFER["off_pct"]}% off) while stock lasts. ' if ACTIVE else f'₹{PS} per piece. ') + 'It is 6 × 2.5 ft with a galvanised steel frame, a 12mm plywood base and a load capacity of up to 100 kg.'),
  ('Is a bunker cot the same as a double decker bed?', 'Yes. Bunker cot, double decker bed, double decker cot and bunk bed all describe two sleeping decks stacked on one frame.'),
  ('Do you sell hostel beds wholesale, direct from the factory?', f'Yes. Bunkworks manufactures in its own workshop in Kerala and supplies hostels, PGs and institutions directly. Orders above {OFFER["bulk_min"]} pieces get a separate bulk quote.'),
  ('Is the mattress included in the price?', 'No. Prices are for the steel frame with its plywood base. Mention mattresses in your enquiry if you need them.'),
