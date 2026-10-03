@@ -443,11 +443,11 @@ NAV_ITEMS = [('/#products', 'Products'), ('/bunker-cot-double-decker-bed/', 'Bun
 
 def banner():
     if not ACTIVE: return ''
-    return (f'<a class="offer-bar" data-offer-bar href="/#pricing" aria-label="5th Anniversary Offer, up to {OFFER["off_pct"]}% off. Bunk bed {B} rupees, single cot {S} rupees. Limited pieces left, book now">'
+    return (f'<a class="offer-bar" data-offer-bar href="/#pricing" aria-label="5th Anniversary Offer. Bunk bed ₹{B}. Single cot ₹{S}. Offer ends {OFFER["end_label"]["en"]}.">'
             f'<span class="ob-tag">5th Anniversary Offer</span>'
-            f'<span>Bunk bed <b class="blink">₹{B}</b> <s>₹{BR}</s></span>'
-            f'<span>Single cot <b class="blink">₹{S}</b> <s>₹{SR}</s></span>'
-            f'<span class="ob-cta">Up to {OFFER["off_pct"]}% OFF — book now →</span></a>')
+            f'<span>Bunk bed <b class="blink">₹{B}</b></span>'
+            f'<span>Single cot <b class="blink">₹{S}</b></span>'
+            f'<span class="ob-cta">Ends {OFFER["end_label"]["en"]} — book now →</span></a>')
 
 HERO_FONTS = '<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,800;0,900;1,700&display=swap" rel="stylesheet">'
 
@@ -475,11 +475,11 @@ def ann_hero():
 {media}
 <div class="wrap ann-grid"><div class="ann-copy">{sparks}
  <h1 class="ann-title" id="ann-h"><span class="ann-eyebrow">Bunkworks — steel bunker cots, double decker beds &amp; single cots</span><span class="ann-script">Our 5th</span> <span class="ann-big">Anniversary</span> <span class="ann-offer">Offer</span></h1>
- <div class="ann-badge-wrap" data-offer-only><div class="ann-badge"><span class="bt">UP TO</span><span class="bp">{pct}%</span><span class="bo">OFF</span></div></div>
+ <div class="ann-badge-wrap" data-offer-only><div class="ann-badge"><span class="bt">ANNIVERSARY</span><span class="bp">PRICES</span><span class="bo">UNTIL 15 OCT</span></div></div>
  <p class="ann-sub">Steel bunk beds (double decker cots) and single cots for hostels, PGs and institutions — factory direct from Kerala.</p>
  <div class="ann-deals" data-offer-only>
-  <a class="ann-deal" href="{wb}" target="_blank" rel="noopener" aria-label="Book steel bunk bed at {B} rupees on WhatsApp"><span class="dn">Steel bunk bed<small>Bunker cot / double decker</small></span><span class="dp blink">₹{B}</span><span class="dw"><s>₹{BR}</s> MRP</span><span class="do">{pct}% OFF</span></a>
-  <a class="ann-deal" href="{ws}" target="_blank" rel="noopener" aria-label="Book steel single cot at {S} rupees on WhatsApp"><span class="dn">Steel single cot<small>6 × 2.5 ft hostel bed</small></span><span class="dp blink">₹{S}</span><span class="dw"><s>₹{SR}</s> MRP</span><span class="do">{pct}% OFF</span></a>
+  <a class="ann-deal" href="{wb}" target="_blank" rel="noopener" aria-label="Book steel bunk bed at {B} rupees on WhatsApp"><span class="dn">Steel bunk bed<small>Bunker cot / double decker</small></span><span class="dp blink">₹{B}</span><span class="dw"><s>₹{BR}</s> regular from 16 Oct</span></a>
+  <a class="ann-deal" href="{ws}" target="_blank" rel="noopener" aria-label="Book steel single cot at {S} rupees on WhatsApp"><span class="dn">Steel single cot<small>6 × 2.5 ft hostel bed</small></span><span class="dp blink">₹{S}</span><span class="dw"><s>₹{SR}</s> regular from 16 Oct</span></a>
  </div>
  <p class="ann-limited" data-offer-only><span class="pulse" aria-hidden="true"></span>Limited pieces left — book your order now</p>
  <div class="ann-ctas"><a class="btn btn-foil" href="{wg}" target="_blank" rel="noopener">Book your order now {ARROW}</a><a class="btn btn-ghost" href="#pricing">See all prices</a></div>
@@ -522,7 +522,7 @@ def short(p): return p['short']
 ORG = {"@context": "https://schema.org", "@type": "Organization", "@id": SITE + "/#org", "name": "Bunkworks", "url": SITE + "/",
        "logo": SITE + "/images/bunkworks-logo-square.png", "image": SITE + "/og-image.jpg", "email": EMAIL, "slogan": TAGLINE,
        "description": "Manufacturer of galvanised steel bunk beds, single beds and cots for hostels, PGs, dormitories and institutions.",
-       "address": {"@type": "PostalAddress", "addressRegion": "Kerala", "addressCountry": "IN"}, "telephone": "+91-9072431550", "sameAs": [GBP]}
+       "address": {"@type": "PostalAddress", "streetAddress": "First Floor, SRA-53, Shanthinagar Rd", "addressLocality": "Chakkarapparambu, Vennela", "addressRegion": "Kerala", "postalCode": "682028", "addressCountry": "IN"}, "telephone": "+91-9072431550", "sameAs": [GBP]}
 
 def page(path, title, desc, body, lang='en', og_image='/og-image.jpg', og_type='website', ld=(), extra_head='', keywords='', robots='index, follow'):
     ldj = ''.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
@@ -609,12 +609,12 @@ def home():
   <div class="price-grid">
    <article class="price-card"><div class="pc-img">{img('bunk-bed-studio-cutout', 'Steel bunk bed (bunker cot, double decker bed) for hostels — galvanised frame, 12mm plywood decks, guard rail and ladder handle, price and specifications', '(min-width:760px) 45vw, 100vw')}</div>
     <div class="pc-body">{TAGOFF}<h3>Steel bunk bed</h3><p class="aka">Bunker cot / double decker bed / double decker cot, 1.40 m high</p>
-     <p class="big-price">{swap(f'<span class="blink">₹{B}</span><s>₹{BR}</s>', f'₹{PB}')}</p><p class="per">per piece, without mattress</p>
+     <p class="big-price">{swap(f'<span class="blink">₹{B}</span> <small class="price-regular">regular ₹{PB} from 16 Oct</small>', f'₹{PB}')}</p><p class="per">per piece, without mattress</p>
      <ul><li>Galvanised anti-rust steel frame</li><li>12mm plywood decks, epoxy coated</li><li>1.40 m high, 200 kg total (100 kg per deck)</li></ul>
      <div class="pc-ctas"><a class="btn btn-gold" href="{wa(f'Hi Bunkworks, I want to book steel bunk beds at ₹{B if ACTIVE else BR}. Quantity: , Delivery city: ')}" target="_blank" rel="noopener">Book now on WhatsApp</a><a class="btn btn-line" href="/bunker-cot-double-decker-bed/">Details</a></div></div></article>
    <article class="price-card"><div class="pc-img">{img('anniversary-single-cot-wood-top', 'Steel single cot for hostels and PGs — wooden plywood top, grey galvanised steel frame and anti-skid feet, price and specifications', '(min-width:760px) 45vw, 100vw')}</div>
     <div class="pc-body">{TAGOFF}<h3>Steel single cot</h3><p class="aka">Single bed / hostel cot, 6 × 2.5 ft, 40 cm high</p>
-     <p class="big-price">{swap(f'<span class="blink">₹{S}</span><s>₹{SR}</s>', f'₹{PS}')}</p><p class="per">per piece, without mattress</p>
+     <p class="big-price">{swap(f'<span class="blink">₹{S}</span> <small class="price-regular">regular ₹{PS} from 16 Oct</small>', f'₹{PS}')}</p><p class="per">per piece, without mattress</p>
      <ul><li>Galvanised anti-rust steel frame</li><li>12mm plywood base, up to 100 kg</li><li>Epoxy coated, anti-skid feet</li></ul>
      <div class="pc-ctas"><a class="btn btn-gold" href="{wa(f'Hi Bunkworks, I want to book steel single cots at ₹{S if ACTIVE else SR}. Quantity: , Delivery city: ')}" target="_blank" rel="noopener">Book now on WhatsApp</a><a class="btn btn-line" href="/steel-single-cot/">Details</a></div></div></article>
   </div>
@@ -628,9 +628,9 @@ def home():
    <div><p>Durable, practical, space-efficient sleeping for hostels, PGs, institutions and modern living spaces.</p><a class="link-arrow" href="#enquire">Ask for the full catalogue {ARROW}</a></div></div>
   <div class="grid-3">
    <article class="card" id="bunk-beds"><div class="thumb">{img('anniversary-bunk-bed-warm-lit-room', 'Galvanised steel bunk bed (double decker cot, bunker cot) with 12mm plywood decks, ladder handle and guard rail for hostels and PGs', cards_sizes)}</div>
-    <div class="card-body"><div><h3><a href="/bunker-cot-double-decker-bed/" style="text-decoration:none">Bunk Beds</a></h3><p>Bunker cots and double decker beds that double the sleepers per room in hostels, PGs and dormitories.</p><span class="card-price">{swap(f'₹{B}<s>₹{BR}</s>', f'₹{PB}')}</span></div><a class="circle-link" href="/bunker-cot-double-decker-bed/" aria-label="Steel bunk bed details and price">{DIAG}</a></div></article>
+    <div class="card-body"><div><h3><a href="/bunker-cot-double-decker-bed/" style="text-decoration:none">Bunk Beds</a></h3><p>Bunker cots and double decker beds that double the sleepers per room in hostels, PGs and dormitories.</p><span class="card-price">{swap(f'₹{B} <small class="price-regular">regular ₹{PB} from 16 Oct</small>', f'₹{PB}')}</span></div><a class="circle-link" href="/bunker-cot-double-decker-bed/" aria-label="Steel bunk bed details and price">{DIAG}</a></div></article>
    <article class="card" id="single-beds"><div class="thumb">{img('single-cot-terracotta-dressed-bed', 'Bunkworks steel single cot with mattress and bedding — grey galvanised steel hostel single bed with plywood base', cards_sizes)}</div>
-    <div class="card-body"><div><h3><a href="/steel-single-cot/" style="text-decoration:none">Single Cots</a></h3><p>Strong, practical single cots — 6 × 2.5 ft, 40 cm high, 12mm plywood base, up to 100 kg.</p><span class="card-price">{swap(f'₹{S}<s>₹{SR}</s>', f'₹{PS}')}</span></div><a class="circle-link" href="/steel-single-cot/" aria-label="Steel single cot details and price">{DIAG}</a></div></article>
+    <div class="card-body"><div><h3><a href="/steel-single-cot/" style="text-decoration:none">Single Cots</a></h3><p>Strong, practical single cots — 6 × 2.5 ft, 40 cm high, 12mm plywood base, up to 100 kg.</p><span class="card-price">{swap(f'₹{S} <small class="price-regular">regular ₹{PS} from 16 Oct</small>', f'₹{PS}')}</span></div><a class="circle-link" href="/steel-single-cot/" aria-label="Steel single cot details and price">{DIAG}</a></div></article>
    <article class="card" id="cots"><div class="thumb">{COT_SVG}</div>
     <div class="card-body"><div><h3>Cots &amp; Folding Beds</h3><p>Flexible sleeping for homes, hostels, guest accommodation and institutions.</p></div><a class="circle-link" href="#enquire" aria-label="Enquire about cots and folding beds">{DIAG}</a></div></article>
   </div>
@@ -797,10 +797,10 @@ def post_page(p):
 
 
 PRODUCTS = {
- 'bunker-cot-double-decker-bed': dict(name='Steel Bunk Bed (Bunker Cot / Double Decker Bed)', sku='BW-BUNK', price=OFFER['bunk'], reg=OFFER['bunk_reg'], P=B, PR=BR,
+ 'bunker-cot-double-decker-bed': dict(name='Steel Bunk Bed (Bunker Cot / Double Decker Bed)', sku='BW-BUNK', price=OFFER['bunk'], reg=OFFER['bunk_after'], P=B, PR=PB,
    seo=lambda: (f'Steel Bunk Bed Price ₹{B} | Double Decker Cot' if ACTIVE else f'Steel Bunk Bed Price ₹{PB} | Double Decker Cot'),
-   desc=lambda: (f'Galvanised steel bunk bed / bunker cot / double decker bed, 12mm plywood decks. 5th Anniversary Offer ₹{B} (MRP ₹{BR}). Bulk quote 50+ pcs.' if ACTIVE else
-                 f'Galvanised steel bunk bed (bunker cot / double decker bed) with 12mm plywood decks for hostels and PGs. ₹{BR} per piece, factory direct. Bulk quote for {OFFER["bulk_min"]}+ pieces.'),
+   desc=lambda: (f'Galvanised steel bunk bed / bunker cot / double decker bed, 12mm plywood decks. 5th Anniversary Offer ₹{B}; regular price ₹{BR} from 16 October 2026. Bulk quote 50+ pcs.' if ACTIVE else
+                 f'Galvanised steel bunk bed (bunker cot / double decker bed) with 12mm plywood decks for hostels and PGs. ₹{PB} per piece, factory direct. Bulk quote for {OFFER["bulk_min"]}+ pieces.'),
    h1='Steel bunk bed for hostels — bunker cot / double decker bed',
    intro='A galvanised steel bunk bed with two 12mm plywood decks and an epoxy coating, with a 200 kg weight-bearing capacity and a height of 1.40 m. Built in our Kerala workshop for hostels, PGs and dormitories, it sleeps two people in the floor space of one bed.',
    imgs=[('anniversary-bunk-bed-terracotta-room', 'Bunkworks galvanised steel bunk bed (bunker cot, double decker bed) with 12mm plywood decks, guard rail and ladder handle in a hostel room'),
@@ -810,16 +810,16 @@ PRODUCTS = {
    facts=[('Also called', 'Bunker cot, double decker bed, double decker cot'), ('Frame', 'Galvanised anti-rust steel'), ('Decks', '12mm thick plywood'),
           ('Height', '1.40 m (140 cm)'), ('Finish', 'Epoxy coating (not powder coating)'), ('Weight bearing', '200 kg'), ('Construction', 'Bolted joints; legs and platforms supplied separately for easy transport'),
           ('Includes', 'Frame, two plywood decks, top guard rail, ladder handle'), ('Mattress', 'Not included'), ('Made in', 'Kerala, India')],
-   faqs=lambda: [('What is the price of this bunk bed?', (f'₹{B} per piece in the 5th Anniversary Offer ({OFFER["off_pct"]}% off) while stock lasts; the MRP is ₹{BR}.' if ACTIVE else f'₹{BR} per piece.') + ' The price is for the frame and plywood decks, without mattresses.'),
+   faqs=lambda: [('What is the price of this bunk bed?', (f'₹{B} per piece in the 5th Anniversary Offer price ₹{B} through {OFFER["end_label"]["en"]}; regular price ₹{BR} from 16 October 2026.' if ACTIVE else f'₹{BR} per piece.') + ' The price is for the frame and plywood decks, without mattresses.'),
                  ('Is a bunker cot the same as a double decker bed?', 'Yes — both names describe this product: two sleeping decks on one steel frame.'),
                  (f'Do you offer bulk pricing?', f'Yes. For more than {OFFER["bulk_min"]} pieces, request a bulk quote with your quantity and delivery city.'),
                  ('How much weight can it take?', 'The bunk bed has a 200 kg weight-bearing capacity.'),
                  ('Will it rust?', 'The frame is galvanised steel with an epoxy coating (not powder coating). Zinc protects the tube inside and out — painted tubes cannot be painted on the inside.')],
    guides=['cheapest-bunk-bed-price-india', 'galvanised-steel-vs-painted-steel-beds', 'bunk-beds-for-adults']),
- 'steel-single-cot': dict(name='Steel Single Cot (Hostel Single Bed)', sku='BW-SINGLE', price=OFFER['single'], reg=OFFER['single_reg'], P=S, PR=SR,
+ 'steel-single-cot': dict(name='Steel Single Cot (Hostel Single Bed)', sku='BW-SINGLE', price=OFFER['single'], reg=OFFER['single_after'], P=S, PR=PS,
    seo=lambda: (f'Steel Single Cot Price ₹{S} | Hostel Single Bed' if ACTIVE else f'Steel Single Cot Price ₹{PS} | Hostel Single Bed'),
-   desc=lambda: (f'Galvanised steel single cot, 6 × 2.5 ft, 12mm plywood base, 100 kg load. 5th Anniversary Offer ₹{S} (MRP ₹{SR}). Bulk quote 50+ pcs.' if ACTIVE else
-                 f'Galvanised steel single cot, 6 × 2.5 ft, 12mm plywood base, up to 100 kg. ₹{SR} per piece, factory direct from Kerala; bulk quote for {OFFER["bulk_min"]}+ pieces.'),
+   desc=lambda: (f'Galvanised steel single cot, 6 × 2.5 ft, 12mm plywood base, 100 kg load. 5th Anniversary Offer ₹{S}; regular price ₹{SR} from 16 October 2026. Bulk quote 50+ pcs.' if ACTIVE else
+                 f'Galvanised steel single cot, 6 × 2.5 ft, 12mm plywood base, up to 100 kg. ₹{PS} per piece, factory direct from Kerala; bulk quote for {OFFER["bulk_min"]}+ pieces.'),
    h1='Steel single cot for hostels and PGs',
    intro='A 6 × 2.5 ft galvanised steel single cot, 40 cm high, with a 12mm plywood base and an epoxy coating, rated up to 100 kg. Built for hostels, PGs, dormitories, institutions and homes.',
    imgs=[('anniversary-single-cot-wood-top', 'Bunkworks steel single cot for hostels — wooden plywood top, grey galvanised steel frame, head rail and anti-skid feet'),
@@ -828,7 +828,7 @@ PRODUCTS = {
    facts=[('Size (L × W)', '6 × 2.5 ft (183 × 76 cm)'), ('Height', '40 cm'), ('Frame', 'Galvanised anti-rust steel'),
           ('Finish', 'Epoxy coating (not powder coating), grey'), ('Base', '12mm thick plywood'), ('Load capacity', 'Up to 100 kg'),
           ('Feet', 'Anti-skid leg bushes'), ('Mattress', 'Not included'), ('Made in', 'Kerala, India')],
-   faqs=lambda: [('What is the price of the steel single cot?', (f'₹{S} per piece in the 5th Anniversary Offer ({OFFER["off_pct"]}% off) while stock lasts; the MRP is ₹{SR}.' if ACTIVE else f'₹{SR} per piece.') + ' The price is without mattress.'),
+   faqs=lambda: [('What is the price of the steel single cot?', (f'₹{S} per piece in the 5th Anniversary Offer price ₹{S} through {OFFER["end_label"]["en"]}; regular price ₹{SR} from 16 October 2026.' if ACTIVE else f'₹{SR} per piece.') + ' The price is without mattress.'),
                  ('What size is the single cot?', '6 × 2.5 ft (183 × 76 cm), 40 cm high. It fits a standard single mattress.'),
                  ('How much weight can it take?', 'Up to 100 kg.'),
                  ('Do you offer bulk pricing?', f'Yes. For more than {OFFER["bulk_min"]} pieces, request a bulk quote.')],
@@ -842,7 +842,7 @@ def product_page(slug):
     facts = ''.join(f'<dt>{k}</dt><dd>{v}</dd>' for k, v in d['facts'])
     by = {p['slug']: p for p in POSTS}
     guides = ''.join(post_card(by[g]) for g in d['guides'])
-    price = swap(f'<span class="blink">₹{d["P"]}</span><s>₹{d["PR"]}</s>', f'₹{d["PR"]}')
+    price = swap(f'<span class="blink">₹{d["P"]}</span> <small class="price-regular">regular ₹{d["PR"]} from 16 Oct</small>', f'₹{d["PR"]}')
     body = f"""
 <div class="wrap">
  <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/#products">Products</a></li><li aria-current="page">{H.escape(d['name'])}</li></ol></nav>
@@ -855,7 +855,7 @@ def product_page(slug):
    <p class="big-price">{price}</p><p class="per">per piece, without mattress{swap(f" — 5th Anniversary Offer, limited pieces", "")}</p>
    <dl class="keyfacts">{facts}</dl>
    <div class="pc-ctas"><a class="btn btn-gold" href="{wa(f"Hi Bunkworks, I want to order: {d['name']} at ₹{d['P'] if ACTIVE else d['PR']}. Quantity: , Delivery city: ")}" target="_blank" rel="noopener">Order on WhatsApp {ARROW}</a><a class="btn btn-line" href="{MAIL_BULK}">Email us</a></div>
-   <p class="fine"><strong>More than {OFFER['bulk_min']} pieces?</strong> <a href="{WA_BULK}" target="_blank" rel="noopener">Get a bulk quote on WhatsApp</a> or email <a href="{MAIL_BULK}">{EMAIL}</a>. {swap(f"Limited pieces at this price (MRP ₹{d['PR']}).", "")}</p>
+   <p class="fine"><strong>More than {OFFER['bulk_min']} pieces?</strong> <a href="{WA_BULK}" target="_blank" rel="noopener">Get a bulk quote on WhatsApp</a> or email <a href="{MAIL_BULK}">{EMAIL}</a>. {swap(f"Limited pieces at the anniversary price; regular price ₹{d['PR']} from 16 October 2026.", "")}</p>
   </div>
  </div>
  <section class="article-faq" aria-labelledby="pfaq"><h2 id="pfaq">Frequently asked questions</h2><div class="faq">{faq_html(d['faqs']())}</div></section>
@@ -863,10 +863,8 @@ def product_page(slug):
 </div>"""
     offer = {"@type": "Offer", "url": SITE + path, "priceCurrency": "INR", "price": str(d['price'] if ACTIVE else d['reg']),
              "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "seller": {"@id": SITE + "/#org"}}
-    if ACTIVE:
-        if OFFER['end']: offer["priceValidUntil"] = OFFER['end']
-        offer["priceSpecification"] = [{"@type": "UnitPriceSpecification", "price": str(d['price']), "priceCurrency": "INR"},
-                                       {"@type": "UnitPriceSpecification", "priceType": "https://schema.org/StrikethroughPrice", "price": str(d['reg']), "priceCurrency": "INR"}]
+    if ACTIVE and OFFER['end']:
+        offer["priceValidUntil"] = OFFER['end']
     prod = {"@context": "https://schema.org", "@type": "Product", "name": d['name'], "sku": d['sku'], "description": d['intro'],
             "image": [f"{SITE}/images/{k}.jpg" for k, _ in d['imgs']], "brand": {"@type": "Brand", "name": "Bunkworks"}, "category": "Hostel furniture",
             "material": "Galvanised steel, plywood", "offers": offer}
