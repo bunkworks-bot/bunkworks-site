@@ -3,9 +3,12 @@
 
 [build]
   publish = "deploy"
+  command = "python3 scripts/seo_finalize.py"
 
 [build.environment]
   NODE_VERSION = "20"
   BW_OUT = "deploy"
 
 # Keep Netlify from treating the repository root as the published site.
+# The SEO finalization step runs once during the final deployment, after all
+# source/generated files are present, so SEO changes are batched into one deploy.
