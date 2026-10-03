@@ -22,6 +22,8 @@ LOCAL_ENTITY = {
     "name": "Bunkworks",
     "description": "Bunkworks is a furniture manufacturer in Kochi, Kerala, specialising in steel hostel beds, bunker cots, double-decker beds and steel single cots for hostels, PGs, dormitories and institutions.",
     "url": f"{SITE}/",
+    "logo": f"{SITE}/images/bunkworks-logo.png",
+    "image": f"{SITE}/og-image.jpg",
     "telephone": "+91 90724 31550",
     "address": ADDRESS,
     "areaServed": [
@@ -30,7 +32,20 @@ LOCAL_ENTITY = {
         {"@type": "State", "name": "Kerala"},
         {"@type": "Country", "name": "India"},
     ],
+    "knowsAbout": [
+        "hostel beds",
+        "bunk beds",
+        "bunker cots",
+        "double-decker beds",
+        "steel single cots",
+        "hostel furniture",
+        "institutional furniture",
+        "bulk hostel furniture supply",
+    ],
 }
+
+TITLE = "Bunkworks | Hostel Beds & Bunk Beds Manufacturer in Kerala"
+DESCRIPTION = "Bunkworks manufactures steel hostel beds, bunk beds, bunker cots and single cots in Kerala. Factory-direct supply for hostels, PGs, dormitories and institutions, with bulk orders and custom sizes."
 
 
 def strip_keywords(html: str) -> str:
@@ -41,13 +56,23 @@ def replace_first(pattern: str, replacement: str, text: str, flags=re.I | re.S):
     return re.sub(pattern, replacement, text, count=1, flags=flags)
 
 
+def replace_meta_content(html: str, attr: str, value: str) -> str:
+    pattern = rf'(<meta\s+{attr}\s*=\s*["\'][^"\']+["\'][^>]*content\s*=\s*["\'])[^"\']*(["\'])'
+    return re.sub(pattern, lambda m: m.group(1) + value.replace('"', '&quot;') + m.group(2), html, count=1, flags=re.I)
+
+
 def homepage_metadata(html: str) -> str:
-    html = replace_first(r"<title>.*?</title>", "<title>Bunkworks | Hostel Beds &amp; Bunk Beds Manufacturer in Kerala</title>", html)
+    html = replace_first(r"<title>.*?</title>", f"<title>{TITLE}</title>", html)
     html = replace_first(
         r"<meta\s+name=[\"']description[\"'][^>]*>",
-        '<meta name="description" content="Bunkworks manufactures steel hostel beds, bunk beds, bunker cots and single cots in Kerala. Factory-direct supply for hostels, PGs, dormitories and institutions, with bulk orders and custom sizes.">',
+        f'<meta name="description" content="{DESCRIPTION}">',
         html,
     )
+    # Keep social previews aligned with the canonical page identity.
+    html = replace_first(r'(<meta\s+property=["\']og:title["\'][^>]*content=["\'])[^"\']*(["\'])', lambda m: m.group(1) + TITLE + m.group(2), html)
+    html = replace_first(r'(<meta\s+property=["\']og:description["\'][^>]*content=["\'])[^"\']*(["\'])', lambda m: m.group(1) + DESCRIPTION + m.group(2), html)
+    html = replace_first(r'(<meta\s+name=["\']twitter:title["\'][^>]*content=["\'])[^"\']*(["\'])', lambda m: m.group(1) + TITLE + m.group(2), html)
+    html = replace_first(r'(<meta\s+name=["\']twitter:description["\'][^>]*content=["\'])[^"\']*(["\'])', lambda m: m.group(1) + DESCRIPTION + m.group(2), html)
     return html
 
 
@@ -61,6 +86,19 @@ def inject_local_schema(html: str) -> str:
     return html
 
 
+def inject_answer_summary(html: str) -> str:
+    if 'id="answer-summary"' in html:
+        return html
+    section = '''<section id="answer-summary" class="section" aria-labelledby="answer-summary-title">
+  <div class="container">
+    <h2 id="answer-summary-title">Bunkworks at a glance</h2>
+    <p><strong>Bunkworks is a furniture manufacturer based in Kochi, Kerala.</strong> The company supplies steel hostel beds, bunk beds, bunker cots, double-decker beds and steel single cots for hostels, PGs, dormitories and institutions, including bulk and custom-size requirements.</p>
+    <p>Business address: First Floor, SRA-53, Shanthinagar Rd, Chakkarapparambu, Vennala, Kochi, Ernakulam, Kerala 682028, India.</p>
+  </div>
+</section>\n'''
+    return html.replace("<main", "<main", 1).replace(">", ">" + section, 1) if "<main" in html else html
+
+
 def process_html(path: Path):
     html = path.read_text(encoding="utf-8")
     original = html
@@ -68,6 +106,17 @@ def process_html(path: Path):
     if path == DEPLOY / "index.html":
         html = homepage_metadata(html)
         html = inject_local_schema(html)
+        # Add a concise, visible entity summary for people and answer engines.
+        # Insert immediately after the opening <main> tag.
+        if 'id="answer-summary"' not in html:
+            section = '''\n<section id="answer-summary" class="section" aria-labelledby="answer-summary-title">
+  <div class="container">
+    <h2 id="answer-summary-title">Bunkworks at a glance</h2>
+    <p><strong>Bunkworks is a furniture manufacturer based in Kochi, Kerala.</strong> The company supplies steel hostel beds, bunk beds, bunker cots, double-decker beds and steel single cots for hostels, PGs, dormitories and institutions, including bulk and custom-size requirements.</p>
+    <p>Business address: First Floor, SRA-53, Shanthinagar Rd, Chakkarapparambu, Vennala, Kochi, Ernakulam, Kerala 682028, India.</p>
+  </div>
+</section>\n'''
+            html = re.sub(r"(<main[^>]*>)", r"\1" + section, html, count=1, flags=re.I)
     if html != original:
         path.write_text(html, encoding="utf-8")
         return True
