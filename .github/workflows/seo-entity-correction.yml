@@ -24,7 +24,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git update-index --really-refresh || true
-          git add -A -f deploy source/build_site.py llms.txt llms-full.txt
+          git add -A -f deploy source/build_site.py
           echo "--- STATUS ---"
           git status --short
           echo "--- DIFF STAT ---"
@@ -37,4 +37,4 @@ jobs:
           git push
 
 # One-time repository correction; remove this workflow after the generated files are committed.
-# Trigger 3: force-stage generated output.
+# Trigger 4: commit staged generated output.
