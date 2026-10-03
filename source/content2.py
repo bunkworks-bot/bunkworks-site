@@ -7,15 +7,15 @@ MAIL_BULK = f'mailto:{EMAIL}?subject=' + _q('Bulk quote request')
 from content import POSTS as BASE, UI, inr
 
 # ---------------- OFFER CONFIG (edit and rebuild) ----------------
-# 5th Anniversary Offer. `bunk_reg` / `single_reg` are the MRP shown struck-through.
-# The MRP is set so that the selling price is exactly 40% below it (5999 / 0.6 = 9,998 -> 9,999; 3300 / 0.6 = 5,500).
+# 5th Anniversary Offer. `bunk_reg` / `single_reg` are the regular prices shown for comparison.
+# The regular prices are the owner-specified post-offer prices: ₹6,499 for the bunker cot and ₹3,499 for the single cot.
 # end=None means no end date (offer runs while stock lasts). Set end='YYYY-MM-DD' to auto-hide the offer after that day
 # (then also decide what price the site should show afterwards).
 import os
-# One-week offer: a real, fixed end date (the countdown timer counts down to 23:59:59 IST on this date).
-# bunk_after / single_after = the selling price the site shows once the offer has ended (owner instruction: prices go back to 6,500 / 3,500).
-OFFER = dict(end=os.environ.get('BW_END', '2026-10-05'), bunk=5999, bunk_reg=9999, single=3300, single_reg=5500, bunk_after=6500, single_after=3500, bulk_min=50,
-             end_label={'en': '5 October 2026', 'ml': '2026 ഒക്ടോബർ 5', 'hi': '5 अक्टूबर 2026'})
+# Fixed anniversary offer with a real end date (the countdown timer counts down to 23:59:59 IST on this date).
+# bunk_after / single_after = the selling price the site shows once the offer has ended (owner instruction: prices become 6,499 / 3,499 from 16 October 2026).
+OFFER = dict(end=os.environ.get('BW_END', '2026-10-15'), bunk=5999, bunk_reg=6499, single=3299, single_reg=3499, bunk_after=6499, single_after=3499, bulk_min=50,
+             end_label={'en': '115 October 2026', 'ml': '2026 ഒക്ടോബർ 15', 'hi': '115 अक्टूबर 2026'})
 OFFER['off_pct'] = round(100 * (1 - OFFER['bunk'] / OFFER['bunk_reg']))
 ACTIVE = True if OFFER['end'] is None else datetime.date.today() <= datetime.date.fromisoformat(OFFER['end'])
 BX_ = None
@@ -33,13 +33,13 @@ def swap(now, after, tag='span', cls=''):
 BOX = {
  'en': dict(h=f'5th Anniversary Offer — up to {OFFER["off_pct"]}% off, limited pieces', bunk='Steel bunk bed / bunker cot / double decker bed', single='Steel single cot',
             per='per piece', reg='regular', bulk=f'Ordering more than {OFFER["bulk_min"]} pieces? Ask for a bulk quote.', btn='Get bulk quote',
-            note=f'Prices per piece, without mattress. Limited pieces at these prices (MRP ₹{BR} and ₹{SR}).', h_after='Current factory prices'),
+            note=f'Prices per piece, without mattress. Limited pieces at these prices (regular prices ₹{BR} and ₹{SR}; regular prices apply from 16 October 2026).', h_after='Current factory prices'),
  'ml': dict(h=f'വാർഷിക ഓഫർ — {OFFER["off_pct"]}% വരെ കിഴിവ്, പരിമിതമായ എണ്ണം മാത്രം', bunk='സ്റ്റീൽ ബങ്ക് ബെഡ് / ബങ്കർ കോട്ട് / ഡബിൾ ഡെക്കർ കട്ടിൽ', single='സ്റ്റീൽ സിംഗിൾ കട്ടിൽ',
             per='ഒരെണ്ണത്തിന്', reg='സാധാരണ വില', bulk=f'{OFFER["bulk_min"]}-ൽ കൂടുതൽ എണ്ണം വേണോ? ബൾക്ക് ക്വട്ടേഷൻ ചോദിക്കൂ.', btn='ബൾക്ക് ക്വട്ടേഷൻ',
-            note=f'വില ഒരെണ്ണത്തിന്, മെത്ത ഇല്ലാതെ. ഈ വിലയിൽ പരിമിതമായ എണ്ണം മാത്രം (MRP ₹{BR}, ₹{SR}).', h_after='ഇപ്പോഴത്തെ ഫാക്ടറി വില'),
+            note=f'വില ഒരെണ്ണത്തിന്, മെത്ത ഇല്ലാതെ. ഈ വിലയിൽ പരിമിതമായ എണ്ണം മാത്രം (regular prices ₹{BR}, ₹{SR}; regular prices apply from 16 October 2026).', h_after='ഇപ്പോഴത്തെ ഫാക്ടറി വില'),
  'hi': dict(h=f'वर्षगांठ ऑफ़र — {OFFER["off_pct"]}% तक की छूट, सीमित पीस', bunk='स्टील बंक बेड / बंकर कॉट / डबल डेकर बेड', single='स्टील सिंगल कॉट',
             per='प्रति पीस', reg='सामान्य कीमत', bulk=f'{OFFER["bulk_min"]} से ज़्यादा पीस चाहिए? बल्क कोटेशन माँगें।', btn='बल्क कोटेशन',
-            note=f'कीमत प्रति पीस, बिना गद्दे के। इस कीमत पर सीमित पीस ही उपलब्ध हैं (MRP ₹{BR} और ₹{SR})।', h_after='मौजूदा फ़ैक्टरी कीमत'),
+            note=f'कीमत प्रति पीस, बिना गद्दे के। इस कीमत पर सीमित पीस ही उपलब्ध हैं (regular price ₹{BR} और ₹{SR})।', h_after='मौजूदा फ़ैक्टरी कीमत'),
 }
 
 def offer_box(lang):
@@ -72,7 +72,7 @@ UPG = {
  'bunk-bed-bunker-cot-price-guide': dict(seo='Bunker Cot & Double Decker Bed Price Guide 2026', short='Bunk bed price guide',
    quick=f'Bunk bed, bunker cot and double decker bed are the same product: two sleeping decks on one frame. Steel hostel bunk beds commonly cost ₹7,000–₹15,000 per unit in 2026; the Bunkworks galvanised bunk bed is ' + swap(f'₹{B} on the 5th Anniversary Offer (MRP ₹{BR})', f'₹{PB}') + '.'),
  'steel-single-cot-for-hostel': dict(seo='Steel Single Cot Size & Price for Hostels (2026)', short='Steel single cot guide',
-   quick=f'The standard single cot size in India is 6 × 2.5 ft (183 × 76 cm) or 6 × 3 ft (183 × 91 cm). Steel single cots for hostels commonly cost ₹3,500–₹8,000; the Bunkworks steel single cot is ' + swap(f'₹{S} on the 5th Anniversary Offer (MRP ₹{SR})', f'₹{PS}') + '.'),
+   quick=f'The standard single cot size in India is 6 × 2.5 ft (183 × 76 cm) or 6 × 3 ft (183 × 91 cm). Steel single cots for hostels commonly cost ₹3,500–₹8,000; the Bunkworks steel single cot is ' + swap(f'₹{S} on the 5th Anniversary Offer (regular price ₹{SR})', f'₹{PS}') + '.'),
  'hostel-beds-wholesale-factory-price': dict(seo='Hostel Beds Wholesale: Factory Price & Bulk Deals', short='Buying beds wholesale',
    quick=f'Buying hostel beds direct from the factory removes dealer margin and gets you consistent batches. Per-piece prices fall with volume; at Bunkworks, orders of more than {OFFER["bulk_min"]} pieces get a separate bulk quote.'),
 }
