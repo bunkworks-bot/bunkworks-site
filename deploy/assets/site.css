@@ -455,3 +455,19 @@ h1.ann-title .ann-eyebrow{font-size:.7rem}
 .contact-card h2{font-size:1rem;margin-bottom:6px;font-family:'Montserrat',sans-serif}
 .contact-card p,.contact-card a{font-size:.94rem}
 .contact-card .btn{margin-top:12px}
+/* ui-polish v1 */
+.nav{box-shadow:0 6px 24px -14px rgba(58,12,7,.45);border-bottom:2px solid transparent;border-image:linear-gradient(90deg,transparent,var(--gold-hi),var(--gold-deep),var(--gold-hi),transparent) 1}
+.nav-links a{position:relative;padding:6px 0;font-weight:600;letter-spacing:.01em}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--gold-hi),var(--gold-deep));transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.nav-links a:hover::after,.nav-links a[aria-current]::after{transform:scaleX(1)}
+.nav .btn-gold{position:relative;overflow:hidden;box-shadow:0 6px 16px -6px rgba(158,94,24,.7)}
+.nav .btn-gold::before{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:uiSheen 4.5s ease-in-out infinite}
+.offer-bar{background-image:linear-gradient(90deg,#3A0C07,#7A1A0E 45%,#3A0C07);background-size:200% 100%;animation:uiBar 9s linear infinite}
+.ob-cd [data-s],.cd [data-s]{animation:uiBlink 1s ease-in-out infinite}
+.cd{animation:uiGlow 2s ease-in-out infinite}
+.pop-price .save{display:inline-block;margin-left:6px;background:#FFE066;color:#3A0C07;font:800 .64rem/1 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:999px;vertical-align:middle}
+@keyframes uiBlink{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes uiGlow{0%,100%{box-shadow:0 0 0 0 rgba(255,224,102,0)}50%{box-shadow:0 0 18px 2px rgba(255,224,102,.35)}}
+@keyframes uiSheen{0%,60%{left:-70%}100%{left:130%}}
+@keyframes uiBar{0%{background-position:0 0}100%{background-position:-200% 0}}
+@media(prefers-reduced-motion:reduce){.nav .btn-gold::before,.offer-bar,.ob-cd [data-s],.cd [data-s],.cd{animation:none}.nav-links a::after{transition:none}}
