@@ -22,8 +22,8 @@ def process(path: Path, campaign_active: bool) -> bool:
     original = html
 
     if campaign_active:
-        # Bunker cot: ₹5,999 through 15 Oct 2026.
-        # Single cot: ₹3,299 through 15 Oct 2026.
+        # Bunker cot: ₹5,999 through 15 Oct 2026; regular price ₹6,499 from 16 Oct.
+        # Single cot: ₹3,299 through 15 Oct 2026; regular price ₹3,499 from 16 Oct.
         html = replace_price(html, "₹3,300", "₹3,299")
         html = replace_price(html, '"price": "3300"', '"price": "3299"')
         html = replace_price(html, '"price": "5999"', '"price": "5999"')
@@ -41,11 +41,11 @@ def process(path: Path, campaign_active: bool) -> bool:
         html = replace_price(html, '"price": "5999"', '"price": "6499"')
         html = replace_price(html, '"price": "3300"', '"price": "3499"')
         html = replace_price(html, '"price": "3299"', '"price": "3499"')
-        html = re.sub(r"\s*<s>₹9,999</s>", "", html)
-        html = re.sub(r"\s*<s>₹5,500</s>", "", html)
+        html = re.sub(r"\s*<s>₹(?:9,999|6,499)</s>", "", html)
+        html = re.sub(r"\s*<s>₹(?:5,500|3,499)</s>", "", html)
         html = html.replace("5th Anniversary Offer", "Bunkworks Price")
-        html = html.replace("40% off the MRP of ₹9,999", "")
-        html = html.replace("40% off the MRP of ₹5,500", "")
+        html = html.replace("the anniversary price of ₹5,999", "")
+        html = html.replace("the anniversary price of ₹3,299", "")
         html = html.replace("until 15 October 2026 or while stock lasts", "")
         html = html.replace("until 15 October 2026", "")
         html = remove_expired_offer_schema(html)
