@@ -45,7 +45,7 @@ LOCAL_ENTITY = {
 }
 
 TITLE = "Bunkworks | Hostel Beds & Bunk Beds Manufacturer in Kerala"
-DESCRIPTION = "Bunkworks manufactures steel hostel beds, bunk beds, bunker cots and single cots in Kerala. Factory-direct supply for hostels, PGs, dormitories and institutions, with bulk orders and custom sizes."
+DESCRIPTION = "Bunkworks manufactures steel hostel beds, bunk beds, bunker cots and single cots in Kerala. Factory-direct for hostels, PGs and institutions. Bulk orders welcome."
 
 ANSWER_SUMMARY_STYLE = """
 .answer-summary{padding:42px 0 28px;background:var(--cream)}

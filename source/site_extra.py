@@ -420,7 +420,7 @@ def bulk_page():
 <h2>Why buy factory-direct</h2><p>You skip dealer margin, receive identical batches and deal directly with the people who make the bed. Read our guide to <a href="/blog/hostel-beds-wholesale-factory-price/">buying hostel beds wholesale</a>, or see what a <a href="/blog/hostel-setup-cost-india/">20-bed hostel costs to set up</a>.</p>'''
     crumbs = [('Home', '/'), ('Bulk order quote', P_BULK)]
     ttl = f'Bulk Order Quote for Hostel Beds ({NMIN}+ Pieces) | Bunkworks'
-    dsc = f'Get a factory-direct bulk quote for steel bunker cots and single cots for hostels, PGs and institutions — {NMIN}+ pieces, custom sizes, delivery planned. WhatsApp or email.'
+    dsc = f'Factory-direct bulk quote for steel bunker cots and single cots for hostels, PGs and institutions — {NMIN}+ pieces, custom sizes, planned delivery.'
     return doc_page(P_BULK, ttl, dsc, f'Bulk Order Quote — Hostel Bunker Cots & Single Cots ({NMIN}+ Pieces)', inner, crumbs, faqs=BULK_FAQS, popup_on=True,
                     band=bulk_band('your hostel or institution', 'Bunker cots and single cots', 'bulk-h'))
 

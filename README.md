@@ -4,9 +4,9 @@
 3. Google Search Console: verify the domain (DNS TXT record) and submit https://www.bunkworks.com/sitemap.xml
 
 ## Offer timer (already set)
-- Ends 5 Oct 2026, 23:59 IST (one week from 28 Sep 2026). Fixed date, not a per-visitor reset.
-- When it ends, visitors' pages switch automatically to Rs 6,500 (bunker cot) and Rs 3,500 (single cot) and the offer bar, pop-up and hero prices disappear.
-- The search-result title/description are static: after 5 Oct, ask for a rebuild so the description drops the discount wording (the homepage title stays the same).
+- Ends 15 Oct 2026. Fixed date, not a per-visitor reset.
+- When it ends, visitors' pages switch automatically to Rs 6,499 (bunker cot) and Rs 3,499 (single cot) and the offer bar, pop-up and hero prices disappear.
+- The search-result title/description are static: after 15 Oct, ask for a rebuild so the description drops the discount wording (the homepage title stays the same).
 - To change dates/prices: edit OFFER at the top of source/content2.py (end, bunk, bunk_reg, bunk_after, single, single_reg, single_after) and rebuild.
 
 ## Load rating
