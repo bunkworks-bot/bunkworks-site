@@ -15,7 +15,7 @@ import os
 # Fixed anniversary offer with a real end date (the countdown timer counts down to 23:59:59 IST on this date).
 # bunk_after / single_after = the selling price the site shows once the offer has ended (owner instruction: prices become 6,499 / 3,499 from 16 October 2026).
 OFFER = dict(end=os.environ.get('BW_END', '2026-10-15'), bunk=5999, bunk_reg=6499, single=3299, single_reg=3499, bunk_after=6499, single_after=3499, bulk_min=50,
-             end_label={'en': '115 October 2026', 'ml': '2026 ഒക്ടോബർ 15', 'hi': '115 अक्टूबर 2026'})
+             end_label={'en': '15 October 2026', 'ml': '2026 ഒക്ടോബർ 15', 'hi': '15 अक्टूबर 2026'})
 OFFER['off_pct'] = round(100 * (1 - OFFER['bunk'] / OFFER['bunk_reg']))
 ACTIVE = True if OFFER['end'] is None else datetime.date.today() <= datetime.date.fromisoformat(OFFER['end'])
 BX_ = None
@@ -70,7 +70,7 @@ UPG = {
  'hostel-setup-cost-hindi': dict(seo='हॉस्टल शुरू करने का खर्च 2026: पूरा बजट', short='हॉस्टल खर्च (हिंदी)',
    quick='20 बेड वाला हॉस्टल या पीजी शुरू करने में 2026 में लगभग ₹3.8–13.8 लाख का सेटअप खर्च आता है (किराए की डिपॉज़िट और वर्किंग कैपिटल छोड़कर)। फ़र्नीचर और मरम्मत सबसे बड़े खर्च हैं जिन्हें आप नियंत्रित कर सकते हैं।'),
  'bunk-bed-bunker-cot-price-guide': dict(seo='Bunker Cot & Double Decker Bed Price Guide 2026', short='Bunk bed price guide',
-   quick=f'Bunk bed, bunker cot and double decker bed are the same product: two sleeping decks on one frame. Steel hostel bunk beds commonly cost ₹7,000–₹15,000 per unit in 2026; the Bunkworks galvanised bunk bed is ' + swap(f'₹{B} on the 5th Anniversary Offer (MRP ₹{BR})', f'₹{PB}') + '.'),
+   quick=f'Bunk bed, bunker cot and double decker bed are the same product: two sleeping decks on one frame. Steel hostel bunk beds commonly cost ₹7,000–₹15,000 per unit in 2026; the Bunkworks galvanised bunk bed is ' + swap(f'₹{B} on the 5th Anniversary Offer (regular price ₹{BR})', f'₹{PB}') + '.'),
  'steel-single-cot-for-hostel': dict(seo='Steel Single Cot Size & Price for Hostels (2026)', short='Steel single cot guide',
    quick=f'The standard single cot size in India is 6 × 2.5 ft (183 × 76 cm) or 6 × 3 ft (183 × 91 cm). Steel single cots for hostels commonly cost ₹3,500–₹8,000; the Bunkworks steel single cot is ' + swap(f'₹{S} on the 5th Anniversary Offer (regular price ₹{SR})', f'₹{PS}') + '.'),
  'hostel-beds-wholesale-factory-price': dict(seo='Hostel Beds Wholesale: Factory Price & Bulk Deals', short='Buying beds wholesale',
@@ -118,7 +118,7 @@ NEW.append(dict(slug='cheapest-bunk-bed-price-india', lang='en', group='bunk-pri
  keywords='cheap bunk beds, bunk bed price in india, double decker bed under 5000, double decker bed price in kerala, bunker cot price, bunk bed for hostel price',
  thumb='blog-cheapest-bunk-bed-price', alt='Affordable galvanised steel double decker bed with plywood decks and ladder handle',
  excerpt='What an affordable bunk bed costs in India in 2026, what “under ₹5,000” really gets you, and the cheapest way to add beds.',
- body=quick('en', f'Basic steel bunk beds (double decker beds) in India commonly sell for about ₹7,000–₹15,000 per unit in 2026. The Bunkworks galvanised steel bunk bed is ' + swap(f'on anniversary offer at ₹{B} per piece (MRP ₹{BR}) until {OFFER["end_label"]["en"]} or while stock lasts', f'₹{PB} per piece') + f'. Orders above {OFFER["bulk_min"]} pieces get a bulk quote.') + f'''
+ body=quick('en', f'Basic steel bunk beds (double decker beds) in India commonly sell for about ₹7,000–₹15,000 per unit in 2026. The Bunkworks galvanised steel bunk bed is ' + swap(f'on anniversary offer at ₹{B} per piece (regular price ₹{BR}) until {OFFER["end_label"]["en"]} or while stock lasts', f'₹{PB} per piece') + f'. Orders above {OFFER["bulk_min"]} pieces get a bulk quote.') + f'''
 <p class="lede">If you are furnishing a hostel, PG or dormitory on a tight budget, the bunk bed is the single cheapest way to add sleepers. Here is what affordable really means in 2026.</p>
 {offer_box('en')}
 <h2>What does a cheap bunk bed cost in India?</h2>
@@ -127,7 +127,7 @@ NEW.append(dict(slug='cheapest-bunk-bed-price-india', lang='en', group='bunk-pri
 <h2>Can you buy a double decker bed under ₹5,000?</h2>
 <p>Sometimes — but check what is missing at that price. The usual savings come from thinner tubes, a sheet or strip base instead of solid plywood, and paint instead of galvanising. In humid and coastal climates, painted mild steel starts rusting once the coating chips. Before you buy, ask for the tube size and thickness, the base thickness, and a load rating per deck.</p>
 <h2>{swap(f'Why is the Bunkworks bunk bed priced at ₹{B}?', 'How much is the Bunkworks bunk bed?')}</h2>
-<p>{swap('It is a 5th Anniversary Offer on existing stock, sold factory-direct from our workshop in Kerala with no dealer margin.', 'It is sold factory-direct from our workshop in Kerala with no dealer margin.')} You still get a galvanised steel frame, 12mm plywood decks, an epoxy coating, bolted joints, a height of 1.40 m and a 200 kg total weight-bearing capacity (100 kg per deck). {swap(f"Limited pieces are available at this price (MRP ₹{BR}).", f"The current price is ₹{PB} per piece.")}</p>
+<p>{swap('It is a 5th Anniversary Offer on existing stock, sold factory-direct from our workshop in Kerala with no dealer margin.', 'It is sold factory-direct from our workshop in Kerala with no dealer margin.')} You still get a galvanised steel frame, 12mm plywood decks, an epoxy coating, bolted joints, a height of 1.40 m and a 200 kg total weight-bearing capacity (100 kg per deck). {swap(f"Limited pieces are available at this price (regular price ₹{BR}).", f"The current price is ₹{PB} per piece.")}</p>
 <h2>What is the cheapest cost per sleeper?</h2>
 <p>One bunk bed sleeps two people, so {swap(f"at ₹{B} the frame costs about ₹3,000 per sleeper", f"at ₹{PB} the frame costs ₹{inr(OFFER['bunk_after']//2)} per sleeper")} — and it uses the floor space of one bed. Two single cots take twice the floor area, which matters when you pay rent per square foot.</p>
 <h2>Bunk bed price in Kerala</h2>
@@ -147,7 +147,7 @@ NEW.append(dict(slug='bunk-bed-price-malayalam', lang='ml', group='bunk-price', 
  keywords='ബങ്ക് ബെഡ് വില, ഡബിൾ ഡെക്കർ കട്ടിൽ വില, ബങ്കർ കോട്ട്, ഇരുമ്പ് കട്ടിൽ വില, ഹോസ്റ്റൽ കട്ടിൽ, double decker bed price in kerala',
  thumb='blog-bunk-bed-price-ml', alt='ഹോസ്റ്റൽ മുറിയിലെ സ്റ്റീൽ ബങ്ക് ബെഡ്ഡുകൾ',
  excerpt='ബങ്ക് ബെഡ്, ഡബിൾ ഡെക്കർ കട്ടിൽ എന്നിവയുടെ 2026-ലെ വിലയും വാങ്ങുമ്പോൾ ശ്രദ്ധിക്കേണ്ട കാര്യങ്ങളും.',
- body=quick('ml', 'കേരളത്തിൽ സാധാരണ സ്റ്റീൽ ബങ്ക് ബെഡ്ഡിന് (ഡബിൾ ഡെക്കർ കട്ടിൽ) 2026-ൽ ഏകദേശം ₹7,000–₹15,000 വിലയുണ്ട്. Bunkworks ഗാൽവനൈസ്ഡ് സ്റ്റീൽ ബങ്ക് ബെഡ് ' + swap(f'{OFFER["end_label"]["ml"]} വരെ (അല്ലെങ്കിൽ സ്റ്റോക്ക് തീരുന്നതുവരെ) ₹{B}-ന് ലഭിക്കും (MRP ₹{BR})', f'₹{PB}-ന് ലഭിക്കും') + f'. {OFFER["bulk_min"]}-ൽ കൂടുതൽ എണ്ണത്തിന് ബൾക്ക് ക്വട്ടേഷൻ.') + f'''
+ body=quick('ml', 'കേരളത്തിൽ സാധാരണ സ്റ്റീൽ ബങ്ക് ബെഡ്ഡിന് (ഡബിൾ ഡെക്കർ കട്ടിൽ) 2026-ൽ ഏകദേശം ₹7,000–₹15,000 വിലയുണ്ട്. Bunkworks ഗാൽവനൈസ്ഡ് സ്റ്റീൽ ബങ്ക് ബെഡ് ' + swap(f'{OFFER["end_label"]["ml"]} വരെ (അല്ലെങ്കിൽ സ്റ്റോക്ക് തീരുന്നതുവരെ) ₹{B}-ന് ലഭിക്കും (regular price ₹{BR})', f'₹{PB}-ന് ലഭിക്കും') + f'. {OFFER["bulk_min"]}-ൽ കൂടുതൽ എണ്ണത്തിന് ബൾക്ക് ക്വട്ടേഷൻ.') + f'''
 <p class="lede">ഹോസ്റ്റലിനോ പിജിക്കോ ഡോർമിറ്ററിക്കോ വേണ്ടി കുറഞ്ഞ ചെലവിൽ കൂടുതൽ കിടക്കകൾ ഒരുക്കാൻ ഏറ്റവും നല്ല വഴി ബങ്ക് ബെഡ്ഡാണ്. 2026-ലെ വിലയും വാങ്ങുമ്പോൾ നോക്കേണ്ട കാര്യങ്ങളും ഇതാ.</p>
 {offer_box('ml')}
 <h2>ബങ്ക് ബെഡ് എന്നാൽ എന്ത്?</h2>
@@ -161,7 +161,7 @@ NEW.append(dict(slug='bunk-bed-price-malayalam', lang='ml', group='bunk-price', 
 <h2>കേരളത്തിൽ ഡെലിവറി</h2>
 <p>Bunkworks കേരളത്തിലാണ് നിർമ്മിക്കുന്നത്. കൊച്ചി, തൃശൂർ, കോട്ടയം ഉൾപ്പെടെയുള്ള ജില്ലകളിലേക്ക് ദൂരെനിന്നുള്ള ചരക്കുകൂലി ഒഴിവാകും. നഗരവും എണ്ണവും അറിയിച്ചാൽ ഡെലിവറി ഉൾപ്പെടെയുള്ള വില അറിയിക്കാം.</p>
 ''',
- faqs=[('ഡബിൾ ഡെക്കർ കട്ടിലിന് കേരളത്തിൽ എത്ര വിലയുണ്ട്?', 'സാധാരണ സ്റ്റീൽ ഹോസ്റ്റൽ ബങ്ക് ബെഡ്ഡിന് 2026-ൽ ഏകദേശം ₹7,000–₹10,000. Bunkworks ബങ്ക് ബെഡ് ' + (f'വാർഷിക ഓഫറിൽ ₹{B} (MRP ₹{BR}).' if ACTIVE else f'₹{PB}.')),
+ faqs=[('ഡബിൾ ഡെക്കർ കട്ടിലിന് കേരളത്തിൽ എത്ര വിലയുണ്ട്?', 'സാധാരണ സ്റ്റീൽ ഹോസ്റ്റൽ ബങ്ക് ബെഡ്ഡിന് 2026-ൽ ഏകദേശം ₹7,000–₹10,000. Bunkworks ബങ്ക് ബെഡ് ' + (f'വാർഷിക ഓഫറിൽ ₹{B} (regular price ₹{BR}).' if ACTIVE else f'₹{PB}.')),
        ('ബങ്കർ കോട്ടും ബങ്ക് ബെഡ്ഡും ഒന്നാണോ?', 'അതെ. ബങ്കർ കോട്ട്, ഡബിൾ ഡെക്കർ കട്ടിൽ, ബങ്ക് ബെഡ് — എല്ലാം ഒരേ ഫ്രെയിമിൽ രണ്ട് കിടക്കകളുള്ള കട്ടിലാണ്.'),
        ('മെത്ത വിലയിൽ ഉൾപ്പെടുമോ?', 'ഇല്ല. വില ഫ്രെയിമിനും പ്ലൈവുഡ് ബേസിനും മാത്രമാണ്; മെത്ത വേണമെങ്കിൽ ക്വട്ടേഷനിൽ ചോദിക്കാം.'),
        ('ബൾക്ക് ഓർഡറിന് ഡിസ്കൗണ്ട് ഉണ്ടോ?', f'{OFFER["bulk_min"]}-ൽ കൂടുതൽ എണ്ണത്തിന് പ്രത്യേക ബൾക്ക് ക്വട്ടേഷൻ നൽകും.')]))
@@ -173,7 +173,7 @@ NEW.append(dict(slug='bunk-bed-price-hindi', lang='hi', group='bunk-price', read
  keywords='बंक बेड क्या होता है, बंक बेड कीमत, डबल डेकर बेड, डबल डेकर बेड under 5000, बंकर कॉट, हॉस्टल बेड',
  thumb='blog-bunk-bed-price-hi', alt='प्लाइवुड डेक वाला गैल्वनाइज़्ड स्टील डबल डेकर बेड',
  excerpt='बंक बेड क्या होता है, 2026 में कीमत कितनी है और सस्ता बंक बेड खरीदते समय क्या देखें।',
- body=quick('hi', 'बंक बेड (डबल डेकर बेड या बंकर कॉट) एक ही फ़्रेम पर ऊपर-नीचे दो बेड होते हैं। भारत में सामान्य स्टील बंक बेड 2026 में लगभग ₹7,000–₹15,000 प्रति यूनिट मिलते हैं। Bunkworks गैल्वनाइज़्ड स्टील बंक बेड ' + swap(f'वर्षगांठ ऑफ़र में ₹{B} (MRP ₹{BR}) — {OFFER["end_label"]["hi"]} तक या स्टॉक रहने तक', f'₹{PB}') + '।') + f'''
+ body=quick('hi', 'बंक बेड (डबल डेकर बेड या बंकर कॉट) एक ही फ़्रेम पर ऊपर-नीचे दो बेड होते हैं। भारत में सामान्य स्टील बंक बेड 2026 में लगभग ₹7,000–₹15,000 प्रति यूनिट मिलते हैं। Bunkworks गैल्वनाइज़्ड स्टील बंक बेड ' + swap(f'वर्षगांठ ऑफ़र में ₹{B} (regular price ₹{BR}) — {OFFER["end_label"]["hi"]} तक या स्टॉक रहने तक', f'₹{PB}') + '।') + f'''
 <p class="lede">हॉस्टल, पीजी या डॉरमिटरी में कम खर्च में ज़्यादा बेड लगाने का सबसे आसान तरीका बंक बेड है। जानिए यह क्या होता है, इसकी कीमत कितनी है और खरीदते समय क्या देखें।</p>
 {offer_box('hi')}
 <h2>बंक बेड क्या होता है?</h2>
@@ -188,7 +188,7 @@ NEW.append(dict(slug='bunk-bed-price-hindi', lang='hi', group='bunk-price', read
 <ul><li>गैल्वनाइज़्ड स्टील फ़्रेम, जिसमें जंग न लगे</li><li>12mm मोटा प्लाइवुड बेस, जो झुकता नहीं</li><li>ऊपर वाले डेक पर मज़बूत गार्ड रेल और सीढ़ी</li><li>बोल्ट वाले जोड़, ताकि बेड खोलकर कहीं और ले जा सकें</li></ul>
 ''',
  faqs=[('बंक बेड क्या होता है?', 'एक ही फ़्रेम पर ऊपर-नीचे दो बेड वाला पलंग। इसे बंकर कॉट और डबल डेकर बेड भी कहते हैं।'),
-       ('डबल डेकर बेड की कीमत कितनी है?', 'सामान्य स्टील हॉस्टल बंक बेड 2026 में लगभग ₹7,000–₹10,000 में मिलते हैं। Bunkworks बंक बेड ' + (f'वर्षगांठ ऑफ़र में ₹{B} (MRP ₹{BR})।' if ACTIVE else f'₹{PB}।')),
+       ('डबल डेकर बेड की कीमत कितनी है?', 'सामान्य स्टील हॉस्टल बंक बेड 2026 में लगभग ₹7,000–₹10,000 में मिलते हैं। Bunkworks बंक बेड ' + (f'वर्षगांठ ऑफ़र में ₹{B} (regular price ₹{BR})।' if ACTIVE else f'₹{PB}।')),
        ('क्या कीमत में गद्दा शामिल है?', 'नहीं। कीमत फ़्रेम और प्लाइवुड बेस की है; गद्दा चाहिए तो कोटेशन में बताएँ।'),
        ('बल्क ऑर्डर पर छूट मिलती है?', f'हाँ, {OFFER["bulk_min"]} से ज़्यादा पीस के लिए अलग बल्क कोटेशन दिया जाता है।')]))
 
@@ -199,7 +199,7 @@ NEW.append(dict(slug='iron-cot-vs-steel-cot-price', lang='en', group='cot-price'
  keywords='iron cot price, steel cot price single, single cot price in kerala, cot price steel, iron cot price in india, steel cot price',
  thumb='blog-iron-vs-steel-cot-price', alt='Galvanised steel single cot with plywood base and dark grey finish',
  excerpt='What “iron cot” usually means, how it compares with galvanised steel, and 2026 single cot prices.',
- body=quick('en', f'Most “iron cots” sold in India are painted mild steel frames. They cost less up front but rust once the paint chips. Galvanised steel cots resist rust for much longer. Steel single cots for hostels commonly cost ₹3,500–₹8,000 in 2026; the Bunkworks galvanised single cot is ' + swap(f'₹{S} on the 5th Anniversary Offer (MRP ₹{SR})', f'₹{PS}') + '.') + f'''
+ body=quick('en', f'Most “iron cots” sold in India are painted mild steel frames. They cost less up front but rust once the paint chips. Galvanised steel cots resist rust for much longer. Steel single cots for hostels commonly cost ₹3,500–₹8,000 in 2026; the Bunkworks galvanised single cot is ' + swap(f'₹{S} on the 5th Anniversary Offer (regular price ₹{SR})', f'₹{PS}') + '.') + f'''
 <p class="lede">Search for a single cot and you will see “iron cot” and “steel cot” used almost interchangeably. The difference that actually matters is how the steel is protected.</p>
 {offer_box('en')}
 <h2>Is an iron cot the same as a steel cot?</h2>
@@ -212,12 +212,12 @@ NEW.append(dict(slug='iron-cot-vs-steel-cot-price', lang='en', group='cot-price'
 <tr><td>Replacement cycle</td><td>Shorter</td><td>Longer</td></tr>
 </tbody></table></div>
 <h2>How much does a single cot cost in 2026?</h2>
-<p>Steel single cots for hostel use commonly cost roughly ₹3,500–₹8,000 each, depending on steel, base and finish. The Bunkworks steel single cot — galvanised frame, 12mm plywood base, rated up to 100 kg — is {swap(f"₹{S} per piece on the 5th Anniversary Offer until {OFFER['end_label']['en']} or while stock lasts (MRP ₹{SR})", f"₹{PS} per piece")}.</p>
+<p>Steel single cots for hostel use commonly cost roughly ₹3,500–₹8,000 each, depending on steel, base and finish. The Bunkworks steel single cot — galvanised frame, 12mm plywood base, rated up to 100 kg — is {swap(f"₹{S} per piece on the 5th Anniversary Offer until {OFFER['end_label']['en']} or while stock lasts (regular price ₹{SR})", f"₹{PS} per piece")}.</p>
 <h2>Single cot price in Kerala</h2>
 <p>We manufacture in Kerala, where monsoon humidity is exactly the condition that ruins painted frames. Local manufacturing also keeps freight low for hostels across the state. Full specs are on the <a href="/steel-single-cot/">steel single cot page</a>; sizes are covered in our <a href="/blog/steel-single-cot-for-hostel/">single cot size guide</a>.</p>
 ''',
  faqs=[('Is an iron cot better than a steel cot?', 'What is sold as an iron cot is usually painted mild steel. A galvanised steel cot resists rust better and lasts longer in humid rooms.'),
-       ('What is the price of a steel single cot?', 'Commonly ₹3,500–₹8,000 in 2026. The Bunkworks galvanised single cot is ' + (f'₹{S} on the 5th Anniversary Offer (MRP ₹{SR}).' if ACTIVE else f'₹{PS}.')),
+       ('What is the price of a steel single cot?', 'Commonly ₹3,500–₹8,000 in 2026. The Bunkworks galvanised single cot is ' + (f'₹{S} on the 5th Anniversary Offer (regular price ₹{SR}).' if ACTIVE else f'₹{PS}.')),
        ('What is the load capacity of the Bunkworks single cot?', 'Up to 100 kg, with a 12mm plywood base and galvanised steel frame.')]))
 
 NEW.append(dict(slug='iron-cot-price-malayalam', lang='ml', group='cot-price', read=4,
@@ -227,19 +227,19 @@ NEW.append(dict(slug='iron-cot-price-malayalam', lang='ml', group='cot-price', r
  keywords='ഇരുമ്പ് കട്ടിൽ വില, കട്ടിൽ വില, സ്റ്റീൽ കട്ടിൽ, സിംഗിൾ കട്ടിൽ വില, കട്ടിൽ വിലക്കുറവിൽ, single cot price in kerala',
  thumb='blog-iron-cot-price-ml', alt='പ്ലൈവുഡ് ബേസുള്ള സ്റ്റീൽ സിംഗിൾ കട്ടിൽ',
  excerpt='ഇരുമ്പ് കട്ടിലോ സ്റ്റീൽ കട്ടിലോ? 2026-ലെ വിലയും വ്യത്യാസവും.',
- body=quick('ml', 'കടകളിൽ "ഇരുമ്പ് കട്ടിൽ" എന്ന് വിൽക്കുന്നത് മിക്കതും പെയിന്റ് ചെയ്ത മൈൽഡ് സ്റ്റീൽ ആണ്; പെയിന്റ് പോയാൽ തുരുമ്പെടുക്കും. ഗാൽവനൈസ്ഡ് സ്റ്റീൽ കട്ടിൽ കൂടുതൽ കാലം നിലനിൽക്കും. Bunkworks സ്റ്റീൽ സിംഗിൾ കട്ടിൽ ' + swap(f'വാർഷിക ഓഫറിൽ ₹{S} (MRP ₹{SR})', f'₹{PS}') + '.') + f'''
+ body=quick('ml', 'കടകളിൽ "ഇരുമ്പ് കട്ടിൽ" എന്ന് വിൽക്കുന്നത് മിക്കതും പെയിന്റ് ചെയ്ത മൈൽഡ് സ്റ്റീൽ ആണ്; പെയിന്റ് പോയാൽ തുരുമ്പെടുക്കും. ഗാൽവനൈസ്ഡ് സ്റ്റീൽ കട്ടിൽ കൂടുതൽ കാലം നിലനിൽക്കും. Bunkworks സ്റ്റീൽ സിംഗിൾ കട്ടിൽ ' + swap(f'വാർഷിക ഓഫറിൽ ₹{S} (regular price ₹{SR})', f'₹{PS}') + '.') + f'''
 <p class="lede">കുറഞ്ഞ വിലയിൽ നല്ല കട്ടിൽ തിരയുമ്പോൾ "ഇരുമ്പ് കട്ടിൽ", "സ്റ്റീൽ കട്ടിൽ" എന്നീ പേരുകൾ കാണാം. യഥാർത്ഥ വ്യത്യാസം സ്റ്റീലിനെ തുരുമ്പിൽ നിന്ന് എങ്ങനെ സംരക്ഷിക്കുന്നു എന്നതിലാണ്.</p>
 {offer_box('ml')}
 <h2>ഇരുമ്പ് കട്ടിലും സ്റ്റീൽ കട്ടിലും ഒന്നാണോ?</h2>
 <p>മിക്കപ്പോഴും അതെ. ഫർണിച്ചറിന് ശുദ്ധമായ ഇരുമ്പ് ഉപയോഗിക്കാറില്ല; "ഇരുമ്പ് കട്ടിൽ" സാധാരണ പെയിന്റ് ചെയ്ത മൈൽഡ് സ്റ്റീൽ (MS) ഫ്രെയിമാണ്. പെയിന്റ് ചെയ്ത സ്റ്റീലോ ഗാൽവനൈസ്ഡ് സ്റ്റീലോ എന്നതാണ് യഥാർത്ഥ തിരഞ്ഞെടുപ്പ്.</p>
 <h2>സിംഗിൾ കട്ടിലിന് എത്ര വിലയുണ്ട്?</h2>
-<p>ഹോസ്റ്റലിനുള്ള സ്റ്റീൽ സിംഗിൾ കട്ടിലിന് 2026-ൽ ഏകദേശം ₹3,500–₹8,000 വിലയുണ്ട്. Bunkworks കട്ടിൽ — ഗാൽവനൈസ്ഡ് ഫ്രെയിം, 12mm പ്ലൈവുഡ് ബേസ്, 100 കിലോ വരെ ഭാരശേഷി — {swap(f"₹{S}-ന് ലഭിക്കും (MRP ₹{SR})", f"₹{PS}-ന് ലഭിക്കും")}.</p>
+<p>ഹോസ്റ്റലിനുള്ള സ്റ്റീൽ സിംഗിൾ കട്ടിലിന് 2026-ൽ ഏകദേശം ₹3,500–₹8,000 വിലയുണ്ട്. Bunkworks കട്ടിൽ — ഗാൽവനൈസ്ഡ് ഫ്രെയിം, 12mm പ്ലൈവുഡ് ബേസ്, 100 കിലോ വരെ ഭാരശേഷി — {swap(f"₹{S}-ന് ലഭിക്കും (regular price ₹{SR})", f"₹{PS}-ന് ലഭിക്കും")}.</p>
 <h2>വലിപ്പം</h2>
 <p>6 × 2.5 അടി (183 × 76 സെ.മീ.), ഉയരം 40 സെ.മീ. സാധാരണ സിംഗിൾ മെത്തയ്ക്ക് യോജിക്കും.</p>
 <h2>കേരളത്തിലെ കാലാവസ്ഥയ്ക്ക് ഏത്?</h2>
 <p>മഴക്കാലത്തെ ഈർപ്പത്തിൽ പെയിന്റ് ചെയ്ത ഫ്രെയിമുകൾ വേഗം തുരുമ്പെടുക്കും. ഹോസ്റ്റലുകൾക്കും പിജികൾക്കും ഗാൽവനൈസ്ഡ് സ്റ്റീലാണ് ദീർഘകാലത്തേക്ക് ലാഭം.</p>
 ''',
- faqs=[('ഇരുമ്പ് കട്ടിലിന് എത്ര വിലയുണ്ട്?', 'സ്റ്റീൽ/ഇരുമ്പ് സിംഗിൾ കട്ടിലിന് 2026-ൽ ഏകദേശം ₹3,500–₹8,000. Bunkworks സിംഗിൾ കട്ടിൽ ' + (f'₹{S} (MRP ₹{SR}).' if ACTIVE else f'₹{PS}.')),
+ faqs=[('ഇരുമ്പ് കട്ടിലിന് എത്ര വിലയുണ്ട്?', 'സ്റ്റീൽ/ഇരുമ്പ് സിംഗിൾ കട്ടിലിന് 2026-ൽ ഏകദേശം ₹3,500–₹8,000. Bunkworks സിംഗിൾ കട്ടിൽ ' + (f'₹{S} (regular price ₹{SR}).' if ACTIVE else f'₹{PS}.')),
        ('ഏതാണ് നല്ലത്: ഇരുമ്പ് കട്ടിലോ സ്റ്റീൽ കട്ടിലോ?', 'ഗാൽവനൈസ്ഡ് സ്റ്റീൽ കട്ടിൽ. പോറൽ വീണാലും തുരുമ്പെടുക്കാൻ സാധ്യത കുറവാണ്.'),
        ('Bunkworks സിംഗിൾ കട്ടിലിന്റെ വലിപ്പം എത്ര?', '6 × 2.5 അടി (183 × 76 സെ.മീ.), ഉയരം 40 സെ.മീ., 100 കിലോ വരെ ഭാരശേഷി.')]))
 
@@ -250,7 +250,7 @@ NEW.append(dict(slug='iron-cot-price-hindi', lang='hi', group='cot-price', read=
  keywords='लोहे का पलंग प्राइस, लोहे का पलंग प्लाई वाला, स्टील पलंग कीमत, सिंगल कॉट कीमत, हॉस्टल बेड',
  thumb='blog-iron-cot-price-hi', alt='प्लाइवुड बेस वाला स्टील सिंगल पलंग',
  excerpt='लोहे का पलंग या स्टील पलंग? 2026 की कीमत और प्लाई वाले पलंग के फ़ायदे।',
- body=quick('hi', 'बाज़ार में "लोहे का पलंग" ज़्यादातर पेंट किया हुआ माइल्ड स्टील होता है, जिसमें पेंट उखड़ने पर जंग लगती है। गैल्वनाइज़्ड स्टील पलंग ज़्यादा टिकता है। Bunkworks प्लाई वाला स्टील सिंगल पलंग ' + swap(f'वर्षगांठ ऑफ़र में ₹{S} (MRP ₹{SR})', f'₹{PS}') + '।') + f'''
+ body=quick('hi', 'बाज़ार में "लोहे का पलंग" ज़्यादातर पेंट किया हुआ माइल्ड स्टील होता है, जिसमें पेंट उखड़ने पर जंग लगती है। गैल्वनाइज़्ड स्टील पलंग ज़्यादा टिकता है। Bunkworks प्लाई वाला स्टील सिंगल पलंग ' + swap(f'वर्षगांठ ऑफ़र में ₹{S} (regular price ₹{SR})', f'₹{PS}') + '।') + f'''
 <p class="lede">सस्ता और मज़बूत सिंगल पलंग ढूँढते समय "लोहे का पलंग" और "स्टील पलंग" दोनों नाम मिलते हैं। असली फ़र्क इस बात में है कि स्टील को जंग से कैसे बचाया गया है।</p>
 {offer_box('hi')}
 <h2>क्या लोहे का पलंग और स्टील पलंग एक ही हैं?</h2>
@@ -258,11 +258,11 @@ NEW.append(dict(slug='iron-cot-price-hindi', lang='hi', group='cot-price', read=
 <h2>प्लाई वाला पलंग क्यों बेहतर है?</h2>
 <p>12mm मोटा प्लाइवुड बेस पूरे गद्दे को बराबर सहारा देता है और झुकता नहीं। लोहे की पट्टियों वाला बेस सस्ता होता है, पर समय के साथ मुड़ सकता है और गद्दे में धँसता है।</p>
 <h2>सिंगल कॉट की कीमत कितनी है?</h2>
-<p>हॉस्टल के लिए स्टील सिंगल कॉट 2026 में आमतौर पर ₹3,500–₹8,000 में मिलते हैं। Bunkworks पलंग — गैल्वनाइज़्ड फ़्रेम, 12mm प्लाई बेस, 100 किलो तक भार क्षमता — {swap(f"₹{S} प्रति पीस (MRP ₹{SR}), {OFFER['end_label']['hi']} तक या स्टॉक रहने तक", f"₹{PS} प्रति पीस")}।</p>
+<p>हॉस्टल के लिए स्टील सिंगल कॉट 2026 में आमतौर पर ₹3,500–₹8,000 में मिलते हैं। Bunkworks पलंग — गैल्वनाइज़्ड फ़्रेम, 12mm प्लाई बेस, 100 किलो तक भार क्षमता — {swap(f"₹{S} प्रति पीस (regular price ₹{SR}), {OFFER['end_label']['hi']} तक या स्टॉक रहने तक", f"₹{PS} प्रति पीस")}।</p>
 <h2>साइज़</h2>
 <p>6 × 2.5 फ़ीट (183 × 76 सेमी), ऊँचाई 40 सेमी। सामान्य सिंगल गद्दे के लिए सही।</p>
 ''',
- faqs=[('लोहे के पलंग की कीमत कितनी है?', 'स्टील/लोहे के सिंगल पलंग 2026 में लगभग ₹3,500–₹8,000 में मिलते हैं। Bunkworks सिंगल कॉट ' + (f'₹{S} (MRP ₹{SR})।' if ACTIVE else f'₹{PS}।')),
+ faqs=[('लोहे के पलंग की कीमत कितनी है?', 'स्टील/लोहे के सिंगल पलंग 2026 में लगभग ₹3,500–₹8,000 में मिलते हैं। Bunkworks सिंगल कॉट ' + (f'₹{S} (regular price ₹{SR})।' if ACTIVE else f'₹{PS}।')),
        ('प्लाई वाला पलंग अच्छा है या पट्टी वाला?', 'प्लाई वाला। 12mm प्लाई बेस झुकता नहीं और गद्दे को बराबर सहारा देता है।'),
        ('Bunkworks सिंगल कॉट का साइज़ क्या है?', '6 × 2.5 फ़ीट (183 × 76 सेमी), ऊँचाई 40 सेमी, 100 किलो तक भार क्षमता।')]))
 
@@ -316,7 +316,7 @@ NEW.append(dict(slug='bunk-beds-for-adults', lang='en', group=None, read=5,
 <h2>Is a double decker bed safe for adults?</h2>
 <p>Yes, when it is rated for adult weight and assembled correctly. Tighten bolts after the first few weeks, and check them during routine room inspections.</p>
 <h2>What does an adult bunk bed cost?</h2>
-<p>Heavy-duty steel bunk beds commonly cost ₹9,000–₹15,000 in 2026. The Bunkworks galvanised steel bunk bed has a 200 kg total weight-bearing capacity (100 kg per deck), 12mm plywood decks and an epoxy coating, and is {swap(f"₹{B} on the 5th Anniversary Offer until {OFFER['end_label']['en']} or while stock lasts (MRP ₹{BR})", f"₹{PB}")}. See the <a href="/bunker-cot-double-decker-bed/">bunk bed page</a> or read our <a href="/blog/bunk-bed-size-guide/">bunk bed size guide</a>.</p>
+<p>Heavy-duty steel bunk beds commonly cost ₹9,000–₹15,000 in 2026. The Bunkworks galvanised steel bunk bed has a 200 kg total weight-bearing capacity (100 kg per deck), 12mm plywood decks and an epoxy coating, and is {swap(f"₹{B} on the 5th Anniversary Offer until {OFFER['end_label']['en']} or while stock lasts (regular price ₹{BR})", f"₹{PB}")}. See the <a href="/bunker-cot-double-decker-bed/">bunk bed page</a> or read our <a href="/blog/bunk-bed-size-guide/">bunk bed size guide</a>.</p>
 ''',
  faqs=[('Can adults sleep on bunk beds?', 'Yes, if the bed has a stated adult load rating, full-size decks, a solid base and proper guard rails.'),
        ('What size bunk bed is best for adults?', '6 × 3 ft decks are the most comfortable; 6 × 2.5 ft fits more beds per room.'),
