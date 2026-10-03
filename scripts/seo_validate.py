@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,7 +18,6 @@ checks += [
     ("no meta keywords", not re.search(r'<meta\s+name=["\']keywords["\']', index, re.I)),
     ("canonical homepage", '<link rel="canonical" href="https://www.bunkworks.com/">' in index),
     ("local business schema", '"@id": "https://www.bunkworks.com/#localbusiness"' in index),
-    ("verified address", "682028" in index and "Chakkarapparambu, Vennela" in index),
     ("business phone", "+91 90724 31550" in index or "+91-9072431550" in index),
     ("robots sitemap", "Sitemap: https://www.bunkworks.com/sitemap.xml" in robots),
     ("Kerala sitemap reference", "Sitemap: https://www.bunkworks.com/sitemap-kerala.xml" in robots),
@@ -28,6 +28,34 @@ checks += [
     ("redirects file exists", (DEPLOY / "_redirects").exists()),
     ("security headers file exists", (DEPLOY / "_headers").exists()),
 ]
+
+# Validate the LocalBusiness address from its structured-data fields rather than
+# requiring one exact concatenated address string. This tolerates valid formatting
+# differences while still requiring the complete verified address.
+def extract_localbusiness_jsonld(html):
+    for raw in re.findall(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', html, re.I | re.S):
+        try:
+            data = json.loads(raw.strip())
+        except json.JSONDecodeError:
+            continue
+        nodes = data if isinstance(data, list) else data.get("@graph", [data]) if isinstance(data, dict) else []
+        if isinstance(nodes, dict):
+            nodes = [nodes]
+        for node in nodes:
+            if isinstance(node, dict) and node.get("@id") == f"{SITE}/#localbusiness":
+                return node
+    return None
+
+localbusiness = extract_localbusiness_jsonld(index)
+address = localbusiness.get("address", {}) if localbusiness else {}
+checks.extend([
+    ("localbusiness structured data parsed", localbusiness is not None),
+    ("verified street address", address.get("streetAddress") == "First Floor, SRA-53, Shanthinagar Rd"),
+    ("verified locality", address.get("addressLocality") == "Chakkarapparambu, Vennela"),
+    ("verified region", address.get("addressRegion") == "Kerala"),
+    ("verified postal code", address.get("postalCode") == "682028"),
+    ("verified country", address.get("addressCountry") == "IN"),
+])
 
 # New content architecture must be present in the final build.
 for slug in ("hostel-furniture", "bulk-hostel-furniture"):
