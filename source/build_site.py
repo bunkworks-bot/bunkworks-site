@@ -454,9 +454,9 @@ HERO_FONTS = '<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&f
 
 def ann_hero():
     slides = [('anniversary-bunk-bed-terracotta-room', 'Bunkworks galvanised steel bunk bed (bunker cot, double decker bed) with 12mm plywood decks and guard rail in a hostel room', 'center 50%'),
-              ('anniversary-single-cot-wood-top', 'Steel single cot for hostels and PGs with wooden plywood top and grey galvanised steel frame — steel single cot for hostels', 'center 50%'),
-              ('anniversary-bunk-bed-warm-lit-room', 'Heavy-duty steel double decker bed for hostels with ladder handle, epoxy coating and 200 kg total (100 kg per deck) weight bearing — factory direct from Kerala', 'center 50%'),
-              ('single-cot-terracotta-dressed-bed', 'Bunkworks steel single cot with mattress, pillows and bedding — grey epoxy-coated galvanised frame with arched head rail for hostels and PGs', 'center 55%')]
+              ('anniversary-single-cot-wood-top', 'Steel single cot for hostels and PGs with wooden plywood top and grey galvanised steel frame', 'center 50%'),
+              ('anniversary-bunk-bed-warm-lit-room', 'Heavy-duty steel double decker bed with ladder handle, epoxy coating and 200 kg total (100 kg per deck) load rating', 'center 50%'),
+              ('single-cot-terracotta-dressed-bed', 'Bunkworks steel single cot with mattress, pillows and bedding — grey epoxy-coated frame with arched head rail', 'center 55%')]
     sl = ''.join(f'<div class="ann-slide{" active" if i == 0 else ""}">{img(k, a, "(min-width:1200px) 62vw, 100vw", eager=(i == 0)).replace("<img ", f"<img style=\"object-position:{pos}\" ")}</div>' for i, (k, a, pos) in enumerate(slides))
     dots = ''.join(f'<button role="tab" aria-selected="{"true" if i == 0 else "false"}" aria-label="Show photo {i+1}">0{i+1}</button>' for i in range(len(slides)))
     seal = """<svg class="ann-seal" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE9A8"/><stop offset=".55" stop-color="#F0B640"/><stop offset="1" stop-color="#B9771C"/></linearGradient><path id="sc" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs><circle cx="60" cy="60" r="58" fill="url(#sg)"/><circle cx="60" cy="60" r="53" fill="#4A0F09"/><circle cx="60" cy="60" r="50" fill="none" stroke="#FFE9A8" stroke-width=".8" stroke-dasharray="1.5 3"/><g class="ring"><text font-size="8.6" font-weight="700" letter-spacing="1.4" fill="#FFE9A8" font-family="Inter,sans-serif"><textPath href="#sc" textLength="278" lengthAdjust="spacing">BUNKWORKS • ANNIVERSARY OFFER • </textPath></text></g><text x="60" y="73" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-weight="900" font-size="44" fill="url(#sg)">5</text><text x="60" y="90" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="9" letter-spacing="3" fill="#FFE9A8">YEARS</text></svg>"""
@@ -608,12 +608,12 @@ def home():
   <div class="section-head"><div><span class="eyebrow">{'5th Anniversary Offer' if ACTIVE else 'Factory prices'}</span><h2 id="pricing-h">{('Up to ' + str(OFFER['off_pct']) + '% off, only in our 5th year.') if ACTIVE else 'Factory-direct prices.'}</h2></div>
    <p>{swap('Limited pieces are available at these prices — book your order before the stock is gone.', 'Per piece, without mattress, direct from our Kerala workshop.')}</p></div>
   <div class="price-grid">
-   <article class="price-card"><div class="pc-img">{img('bunk-bed-studio-cutout', 'Steel bunk bed (bunker cot, double decker bed) for hostels — galvanised frame, 12mm plywood decks, guard rail and ladder handle, price and specifications', '(min-width:760px) 45vw, 100vw')}</div>
+   <article class="price-card"><div class="pc-img">{img('bunk-bed-studio-cutout', 'Steel bunk bed (bunker cot) with galvanised frame, 12mm plywood decks, guard rail and ladder handle', '(min-width:760px) 45vw, 100vw')}</div>
     <div class="pc-body">{TAGOFF}<h3>Steel bunk bed</h3><p class="aka">Bunker cot / double decker bed / double decker cot, 1.40 m high</p>
      <p class="big-price">{swap(f'<span class="blink">₹{B}</span> <small class="price-regular">regular ₹{PB} from 16 Oct</small>', f'₹{PB}')}</p><p class="per">per piece, without mattress</p>
      <ul><li>Galvanised anti-rust steel frame</li><li>12mm plywood decks, epoxy coated</li><li>1.40 m high, 200 kg total (100 kg per deck)</li></ul>
      <div class="pc-ctas"><a class="btn btn-gold" href="{wa(f'Hi Bunkworks, I want to book steel bunk beds at ₹{B if ACTIVE else BR}. Quantity: , Delivery city: ')}" target="_blank" rel="noopener">Book now on WhatsApp</a><a class="btn btn-line" href="/bunker-cot-double-decker-bed/">Details</a></div></div></article>
-   <article class="price-card"><div class="pc-img">{img('anniversary-single-cot-wood-top', 'Steel single cot for hostels and PGs — wooden plywood top, grey galvanised steel frame and anti-skid feet, price and specifications', '(min-width:760px) 45vw, 100vw')}</div>
+   <article class="price-card"><div class="pc-img">{img('anniversary-single-cot-wood-top', 'Steel single cot for hostels and PGs with wooden plywood top, grey galvanised frame and anti-skid feet', '(min-width:760px) 45vw, 100vw')}</div>
     <div class="pc-body">{TAGOFF}<h3>Steel single cot</h3><p class="aka">Single bed / hostel cot, 6 × 2.5 ft, 40 cm high</p>
      <p class="big-price">{swap(f'<span class="blink">₹{S}</span> <small class="price-regular">regular ₹{PS} from 16 Oct</small>', f'₹{PS}')}</p><p class="per">per piece, without mattress</p>
      <ul><li>Galvanised anti-rust steel frame</li><li>12mm plywood base, up to 100 kg</li><li>Epoxy coated, anti-skid feet</li></ul>
@@ -628,7 +628,7 @@ def home():
   <div class="section-head"><div><span class="eyebrow">Our products</span><h2 id="products-h">Built for the spaces that need more.</h2></div>
    <div><p>Durable, practical, space-efficient sleeping for hostels, PGs, institutions and modern living spaces.</p><a class="link-arrow" href="#enquire">Ask for the full catalogue {ARROW}</a></div></div>
   <div class="grid-3">
-   <article class="card" id="bunk-beds"><div class="thumb">{img('anniversary-bunk-bed-warm-lit-room', 'Galvanised steel bunk bed (double decker cot, bunker cot) with 12mm plywood decks, ladder handle and guard rail for hostels and PGs', cards_sizes)}</div>
+   <article class="card" id="bunk-beds"><div class="thumb">{img('anniversary-bunk-bed-warm-lit-room', 'Galvanised steel bunker cot with 12mm plywood decks, ladder handle and guard rail for hostels and PGs', cards_sizes)}</div>
     <div class="card-body"><div><h3><a href="/bunker-cot-double-decker-bed/" style="text-decoration:none">Bunk Beds</a></h3><p>Bunker cots and double decker beds that double the sleepers per room in hostels, PGs and dormitories.</p><span class="card-price">{swap(f'₹{B} <small class="price-regular">regular ₹{PB} from 16 Oct</small>', f'₹{PB}')}</span></div><a class="circle-link" href="/bunker-cot-double-decker-bed/" aria-label="Steel bunk bed details and price">{DIAG}</a></div></article>
    <article class="card" id="single-beds"><div class="thumb">{img('single-cot-terracotta-dressed-bed', 'Bunkworks steel single cot with mattress and bedding — grey galvanised steel hostel single bed with plywood base', cards_sizes)}</div>
     <div class="card-body"><div><h3><a href="/steel-single-cot/" style="text-decoration:none">Single Cots</a></h3><p>Strong, practical single cots — 6 × 2.5 ft, 40 cm high, 12mm plywood base, up to 100 kg.</p><span class="card-price">{swap(f'₹{S} <small class="price-regular">regular ₹{PS} from 16 Oct</small>', f'₹{PS}')}</span></div><a class="circle-link" href="/steel-single-cot/" aria-label="Steel single cot details and price">{DIAG}</a></div></article>
@@ -649,13 +649,13 @@ def home():
     <div class="feature"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 9a5 5 0 1 0-6 5l-8 8v4h4l8-8a5 5 0 0 0 5-6l-3 3-3-1-1-3Z"/></svg><span>Bolted, easy to assemble</span></div>
    </div>
   </div>
-  <figure class="joint" style="margin:0">{img('bolted-steel-corner-joint-plywood', 'Bolted galvanised steel corner joint of a Bunkworks bunk bed and single cot with 12mm plywood base — rust-resistant hostel furniture', '(min-width:900px) 50vw, 100vw')}
+  <figure class="joint" style="margin:0">{img('bolted-steel-corner-joint-plywood', 'Bolted galvanised steel corner joint with 12mm plywood base on a Bunkworks bunk bed and single cot', '(min-width:900px) 50vw, 100vw')}
    <figcaption class="joint-note">12mm plywood base<br>Galvanised steel frame</figcaption></figure>
  </div>
 </section>
 
 <section class="projects" id="projects" aria-labelledby="proj-h">
- <div class="projects-bg">{img('steel-bed-frames-factory-kerala', 'Stacks of galvanised steel bunk bed and single cot frames with plywood bases ready for a wholesale hostel furniture order, Kerala factory', '100vw')}</div>
+ <div class="projects-bg">{img('steel-bed-frames-factory-kerala', 'Galvanised steel bunk bed and single cot frames stacked for a wholesale hostel furniture order, Kerala', '100vw')}</div>
  <div class="wrap projects-inner">
   <span class="eyebrow">For hostels, PGs &amp; institutions</span>
   <h2 id="proj-h">Furnishing an entire hostel?</h2>

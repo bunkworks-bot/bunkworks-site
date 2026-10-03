@@ -127,10 +127,55 @@ def inject_answer_summary(html: str) -> str:
     return html.replace("<main", "<main", 1)
 
 
+
+SHIP_NOTE = '<p class="ship-note">Shipping charges apply. This product is non-returnable.</p>'
+POLICY_RETURN = {"@type": "MerchantReturnPolicy", "applicableCountry": "IN", "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"}
+POLICY_SHIP = {"@type": "OfferShippingDetails", "shippingLabel": "Shipping charges apply", "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "IN"}}
+
+
+def commerce_policies(html: str, path: Path) -> str:
+    """Shipping charges apply + non-returnable: structured data and visible notes (idempotent)."""
+    def fix_ld(m):
+        raw = m.group(2)
+        if '"Product"' not in raw:
+            return m.group(0)
+        try:
+            d = json.loads(raw)
+        except ValueError:
+            return m.group(0)
+        if not isinstance(d, dict) or d.get("@type") != "Product":
+            return m.group(0)
+        offers = d.get("offers")
+        for o in (offers if isinstance(offers, list) else [offers]):
+            if isinstance(o, dict):
+                o.setdefault("shippingDetails", POLICY_SHIP)
+                o.setdefault("hasMerchantReturnPolicy", POLICY_RETURN)
+        return m.group(1) + json.dumps(d, ensure_ascii=False) + m.group(3)
+    html = re.sub(r'(<script type="application/ld\+json">)(.*?)(</script>)', fix_ld, html, flags=re.S)
+    rel = path.relative_to(DEPLOY).as_posix()
+    if rel in ("bunker-cot-double-decker-bed/index.html", "steel-single-cot/index.html"):
+        html = re.sub(r'(<p class="per">(?:(?!</p>).)*</p>)(?!<p class="ship-note">)', lambda m: m.group(1) + SHIP_NOTE, html, flags=re.S)
+        html = re.sub(r'(?:<p class="ship-note">[^<]*</p>){2,}', SHIP_NOTE, html)
+    if rel == "index.html":
+        def card(m):
+            c = m.group(0)
+            if "card-price" not in c or "ship-note" in c:
+                return c
+            return c.replace('</div><a class="circle-link"', '<span class="ship-note">Shipping charges apply · Non-returnable</span></div><a class="circle-link"', 1)
+        html = re.sub(r'<article class="card".*?</article>', card, html, flags=re.S)
+    if 'id="offerPop"' in html and 'class="pop-fine"' not in html:
+        html = html.replace('<p class="pop-limited">', '<p class="pop-fine">Shipping charges apply · Non-returnable product</p><p class="pop-limited">', 1)
+    if rel == "shipping-delivery/index.html" and "non-returnable" not in html.lower():
+        html = html.replace("<h2>Questions?</h2>", '<p><strong>Shipping charges apply</strong> to all orders and are stated in your quote. <strong>Products are non-returnable</strong> once delivered, so please check the packages on arrival and report any visible damage or missing parts immediately.</p><h2>Questions?</h2>', 1)
+    if rel == "terms/index.html" and "non-returnable" not in html.lower():
+        html = html.replace("See our <a href=\"/shipping-delivery/\">shipping and delivery</a> page.</p>", "See our <a href=\"/shipping-delivery/\">shipping and delivery</a> page.</p><p>Shipping charges apply to all orders. Products are non-returnable once delivered, other than as required by applicable consumer-protection law; please report visible damage or missing parts on delivery.</p>", 1)
+    return html
+
 def process_html(path: Path):
     html = path.read_text(encoding="utf-8")
     original = html
     html = strip_keywords(html)
+    html = commerce_policies(html, path)
     if path == DEPLOY / "index.html":
         html = homepage_metadata(html)
         html = inject_local_schema(html)

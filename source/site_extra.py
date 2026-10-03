@@ -112,6 +112,11 @@ h1.ann-title .ann-eyebrow{font-size:.7rem}
 @keyframes uiSheen{0%,60%{left:-70%}100%{left:130%}}
 @keyframes uiBar{0%{background-position:0 0}100%{background-position:-200% 0}}
 @media(prefers-reduced-motion:reduce){.nav .btn-gold::before,.offer-bar,.ob-cd [data-s],.cd [data-s],.cd{animation:none}.nav-links a::after{transition:none}}
+/* ui-polish v2 */
+.nav{background:#F6F2EA;-webkit-backdrop-filter:none;backdrop-filter:none}
+.ship-note{display:block;margin-top:6px;font-size:.78rem;font-weight:600;color:var(--muted)}
+.pcard .ship-note{margin:4px 0 0}
+.pop-fine{margin:10px 0 0;font:600 .74rem/1.3 'Inter',sans-serif;color:#F1DFC4}
 '''
 
 # ------------------------------------------------------------------ JS: countdown + pop-up (replaces the old END block)
@@ -130,7 +135,7 @@ COUNTDOWN_JS = r''' var END=new Date('__END_ISO__').getTime(),expired=false,cds=
    if(e.key==='Tab'){var f=pop.querySelectorAll('a[href],button:not([disabled])');if(!f.length)return;var a=f[0],z=f[f.length-1];
     if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
   var seen=false;try{seen=sessionStorage.getItem('bwPop')==='1'}catch(e){}
-  if(!seen)setTimeout(openPop,2200)}
+  if(!seen)setTimeout(openPop,8000)}
  if(Date.now()>END){expire()}else{setCd(END-Date.now());setInterval(function(){var ms=END-Date.now();if(ms<=0){expire();return}setCd(ms)},1000)}
 '''
 _a = JS.index(" var END="); _b = JS.index(" document.querySelectorAll('[data-year]')")
@@ -317,7 +322,7 @@ PRODUCTS = {
    intro='A galvanised steel bunker cot (double decker bed) with two 12mm plywood decks, guard rail and ladder handle. Epoxy coated, 1.40 m high, 200 kg total weight bearing (100 kg per deck) — made in Kerala for hostels, PGs and dormitories.',
    quick=lambda: (f'<strong>A bunker cot — also called a double decker bed or bunk bed — is a two-deck bed on one frame.</strong> The Bunkworks steel bunker cot is made in Kerala from galvanised steel with an epoxy coating. It is 1.40 m (140 cm) high, has two 183 × 76 cm (6 × 2.5 ft) decks on 12mm plywood bases and a 200 kg total weight-bearing capacity (100 kg per deck). '
                   + swap(f'Price: ₹{B} per piece in the 5th Anniversary Offer (MRP ₹{BR}, {PCT}% off) until {END} or while stock lasts', f'Price: ₹{PB} per piece') + f', without mattress. Orders above {NMIN} pieces get a bulk quote.'),
-   imgs=[('anniversary-bunk-bed-terracotta-room', 'Bunkworks galvanised steel bunker cot (double decker bed) with 12mm plywood decks, guard rail and ladder handle in a hostel room'),
+   imgs=[('anniversary-bunk-bed-terracotta-room', 'Bunkworks galvanised steel bunker cot with 12mm plywood decks, guard rail and ladder handle in a hostel room'),
          ('bunk-bed-studio-cutout', 'Steel bunker cot studio view — hostel double decker bed with plywood decks, bolted joints and protected feet'),
          ('anniversary-bunk-bed-warm-lit-room', 'Heavy-duty steel double decker bed for hostels and PGs — 1.40 m high, 200 kg total (100 kg per deck), epoxy coated'),
          ('bolted-steel-corner-joint-plywood', 'Bolted galvanised steel corner joint of the bunker cot frame under the 12mm plywood deck — rust-resistant hostel furniture')],
@@ -339,7 +344,7 @@ PRODUCTS = {
    intro='A 6 × 2.5 ft galvanised steel single cot, 40 cm high, with a solid 12mm plywood base and an epoxy coating, rated for up to 100 kg. Bolt-together and made in Kerala for hostels, PGs, dormitories and institutions.',
    quick=lambda: (f'<strong>A single cot — also called a single bed, iron cot or steel cot — is a one-person bed on a metal frame.</strong> The Bunkworks steel single cot is galvanised steel with an epoxy coating, 6 × 2.5 ft (183 × 76 cm), 40 cm high, with a 12mm plywood base and up to 100 kg load capacity. '
                   + swap(f'Price: ₹{S} per piece in the 5th Anniversary Offer (MRP ₹{SR}, {PCT}% off) until {END} or while stock lasts', f'Price: ₹{PS} per piece') + f', without mattress. Orders above {NMIN} pieces get a bulk quote.'),
-   imgs=[('single-cot-terracotta-dressed-bed', 'Bunkworks steel single cot with mattress, pillows and bedding — grey epoxy-coated galvanised steel frame with arched head rail for hostels and PGs'),
+   imgs=[('single-cot-terracotta-dressed-bed', 'Bunkworks steel single cot with mattress, pillows and bedding — grey epoxy-coated frame with arched head rail'),
          ('anniversary-single-cot-wood-top', 'Steel single cot for hostels with wooden plywood top, grey galvanised steel frame, head rail and anti-skid feet'),
          ('bolted-steel-corner-joint-plywood', 'Bolted galvanised steel corner joint under the 12mm plywood base of the steel single cot — 100 kg rated hostel single bed'),
          ('steel-bed-frames-factory-kerala', 'Stack of galvanised steel single cot and bunker cot frames with plywood bases at the Bunkworks factory, Kerala')],

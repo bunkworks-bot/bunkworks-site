@@ -15,7 +15,7 @@
    if(e.key==='Tab'){var f=pop.querySelectorAll('a[href],button:not([disabled])');if(!f.length)return;var a=f[0],z=f[f.length-1];
     if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
   var seen=false;try{seen=sessionStorage.getItem('bwPop')==='1'}catch(e){}
-  if(!seen)setTimeout(openPop,2200)}
+  if(!seen)setTimeout(openPop,8000)}
  if(Date.now()>END){expire()}else{setCd(END-Date.now());setInterval(function(){var ms=END-Date.now();if(ms<=0){expire();return}setCd(ms)},1000)}
  document.querySelectorAll('[data-year]').forEach(function(e){e.textContent=new Date().getFullYear()});
  var b=document.getElementById('burger'),p=document.getElementById('mpanel');

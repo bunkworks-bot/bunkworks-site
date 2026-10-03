@@ -3,6 +3,7 @@
 from pathlib import Path
 from html import escape
 import json
+import re
 
 OUT = Path(__file__).resolve().parents[1] / "deploy"
 SITE = "https://www.bunkworks.com"
@@ -24,6 +25,32 @@ def write(path, html):
 
 write('hostel-furniture', HUB)
 write('bulk-hostel-furniture', BULK)
+
+def apply_chrome(slug):
+    """Give the hub pages the same offer bar, logo header, footer, popup and scripts as the rest of the site."""
+    home=(OUT/'index.html').read_text(encoding='utf-8')
+    hs=home.find('<a class="skip"'); he=home.find('</header>')+len('</header>')
+    fs=home.find('<footer'); fe=home.find('</footer>')+len('</footer>'); be=home.find('</body>')
+    if min(hs,he,fs,fe,be)<0: return
+    top=home[hs:he]; foot=home[fs:fe]; tail=home[fe:be]
+    if slug=='hostel-furniture': top=top.replace('<a href="/hostel-furniture/">Hostel Furniture</a>','<a href="/hostel-furniture/" aria-current="page">Hostel Furniture</a>',1)
+    q=OUT/slug/'index.html'; h=q.read_text(encoding='utf-8')
+    h=re.sub(r'<header class="nav">.*?</header>',lambda m: top,h,count=1,flags=re.S)
+    h=h.replace('<main>','<main id="main">',1)
+    h=re.sub(r'</main>.*?</body>',lambda m: '</main>\n'+foot+tail+'</body>',h,count=1,flags=re.S)
+    q.write_text(h,encoding='utf-8')
+
+apply_chrome('hostel-furniture')
+apply_chrome('bulk-hostel-furniture')
+
+def add_faq_schema(slug):
+    q=OUT/slug/'index.html'; h=q.read_text(encoding='utf-8')
+    items=re.findall(r'<details><summary><strong>(.*?)</strong></summary><p[^>]*>(.*?)</p></details>',h,flags=re.S)
+    if not items: return
+    schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':re.sub(r'<[^>]+>','',a),'acceptedAnswer':{'@type':'Answer','text':re.sub(r'<[^>]+>','',b)}} for a,b in items]}
+    q.write_text(add_schema(h,schema),encoding='utf-8')
+
+add_faq_schema('bulk-hostel-furniture')
 for slug, faq in FAQ_PRODUCT.items():
     p=OUT/slug/'index.html'
     if p.exists(): p.write_text(inject(p.read_text(encoding='utf-8'), COVERAGE+faq), encoding='utf-8')
