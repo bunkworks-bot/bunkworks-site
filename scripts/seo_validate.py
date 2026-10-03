@@ -17,7 +17,7 @@ checks += [
     ("no meta keywords", not re.search(r'<meta\s+name=["\']keywords["\']', index, re.I)),
     ("canonical homepage", '<link rel="canonical" href="https://www.bunkworks.com/">' in index),
     ("local business schema", '"@id": "https://www.bunkworks.com/#localbusiness"' in index),
-    ("verified address", "682028" in index and "Chakkarapparambu, Vennala" in index),
+    ("verified address", "682028" in index and "Chakkarapparambu, Vennela" in index),
     ("business phone", "+91 90724 31550" in index or "+91-9072431550" in index),
     ("robots sitemap", "Sitemap: https://www.bunkworks.com/sitemap.xml" in robots),
     ("Kerala sitemap reference", "Sitemap: https://www.bunkworks.com/sitemap-kerala.xml" in robots),
@@ -45,7 +45,7 @@ html_files = list(DEPLOY.rglob("*.html"))
 checks.append(("production HTML exists", bool(html_files)))
 for path in html_files:
     html = path.read_text(encoding="utf-8")
-    checks.append((f"metadata: {path.relative_to(DEPLOY)}", bool(re.search(r"<title>[^<]+</title>", html, re.I) and re.search(r'<meta\s+name=["\']description["\'][^>]*>', html, re.I)))
+    checks.append((f"metadata: {path.relative_to(DEPLOY)}", bool(re.search(r"<title>[^<]+</title>", html, re.I) and re.search(r'<meta\s+name=["\']description["\'][^>]*>', html, re.I))))
     checks.append((f"no keywords: {path.relative_to(DEPLOY)}", not re.search(r'<meta\s+name=["\']keywords["\']', html, re.I)))
 
 # Ensure the new URLs will be discoverable after finalization.
