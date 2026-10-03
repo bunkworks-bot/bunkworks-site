@@ -11,7 +11,7 @@ LOGO_W, LOGO_H = META['logo']
 PHONE = '9072431550'
 WA = 'https://wa.me/919072431550'
 EMAIL = 'bunkworksindia@gmail.com'
-GBP = 'https://share.google/gJ9QIqYunFs6Jm2MU'
+GBP = 'https://share.google/lSNdgoG97YMX7hqwc'
 from urllib.parse import quote as _q
 def wa(msg): return WA + '?text=' + _q(msg)
 TAGLINE = 'Furniture for spaces that work'
