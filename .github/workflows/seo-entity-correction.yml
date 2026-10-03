@@ -19,11 +19,16 @@ jobs:
       - name: Patch verified business entity data
         run: python source/patch_verified_entity.py
 
-      - name: Commit generated SEO/entity corrections
+      - name: Stage and commit generated corrections
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add source/build_site.py deploy llms.txt llms-full.txt 2>/dev/null || true
+          git update-index --really-refresh || true
+          git add -A -f deploy source/build_site.py llms.txt llms-full.txt
+          echo "--- STATUS ---"
+          git status --short
+          echo "--- DIFF STAT ---"
+          git diff --cached --stat
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
@@ -32,4 +37,4 @@ jobs:
           git push
 
 # One-time repository correction; remove this workflow after the generated files are committed.
-# Trigger 2: robust regex patch.
+# Trigger 3: force-stage generated output.
