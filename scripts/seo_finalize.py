@@ -81,7 +81,7 @@ def homepage_metadata(html: str) -> str:
     html = replace_first(r'(<meta\s+property=[\"\']og:title[\"\'][^>]*content=[\"\'])[^\"\']*([\"\'])', lambda m: m.group(1) + TITLE + m.group(2), html)
     html = replace_first(r'(<meta\s+property=[\"\']og:description[\"\'][^>]*content=[\"\'])[^\"\']*([\"\'])', lambda m: m.group(1) + DESCRIPTION + m.group(2), html)
     html = replace_first(r'(<meta\s+name=[\"\']twitter:title[\"\'][^>]*content=[\"\'])[^\"\']*([\"\'])', lambda m: m.group(1) + TITLE + m.group(2), html)
-    html = replace_first(r'(<meta\s+name=[\"\']twitter:description[\"\'][^>]*content=[\"\'])[^"']*([\"\'])', lambda m: m.group(1) + DESCRIPTION + m.group(2), html)
+    html = replace_first(r'(<meta\s+name=[\"\']twitter:description[\"\'][^>]*content=[\"\'])[^\"\']*([\"\'])', lambda m: m.group(1) + DESCRIPTION + m.group(2), html)
     style = f'<style id="answer-summary-style">{ANSWER_SUMMARY_STYLE}</style>'
     if 'id="answer-summary-style"' not in html:
         html = html.replace("</head>", style + "</head>", 1)
