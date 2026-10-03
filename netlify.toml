@@ -1,0 +1,10 @@
+# Netlify deployment configuration for Bunkworks.
+# The production site is the prebuilt static site in /deploy.
+
+[build]
+  publish = "deploy"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Keep Netlify from treating the repository root as the published site.
