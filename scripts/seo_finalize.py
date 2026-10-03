@@ -9,7 +9,7 @@ SITE = "https://www.bunkworks.com"
 ADDRESS = {
     "@type": "PostalAddress",
     "streetAddress": "First Floor, SRA-53, Shanthinagar Rd",
-    "addressLocality": "Chakkarapparambu, Vennala",
+    "addressLocality": "Chakkarapparambu, Vennela",
     "addressRegion": "Kerala",
     "postalCode": "682028",
     "addressCountry": "IN",
@@ -47,6 +47,21 @@ LOCAL_ENTITY = {
 TITLE = "Bunkworks | Hostel Beds & Bunk Beds Manufacturer in Kerala"
 DESCRIPTION = "Bunkworks manufactures steel hostel beds, bunk beds, bunker cots and single cots in Kerala. Factory-direct supply for hostels, PGs, dormitories and institutions, with bulk orders and custom sizes."
 
+ANSWER_SUMMARY_STYLE = """
+.answer-summary{padding:42px 0 28px;background:var(--cream)}
+.answer-summary-inner{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px}
+.answer-summary-copy{max-width:760px}
+.answer-summary-copy h2{font-size:clamp(1.5rem,3vw,2.15rem)}
+.answer-summary-copy p{margin-top:10px;color:var(--muted);max-width:70ch}
+.answer-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:24px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.answer-summary-grid div{padding:14px 15px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:3px}
+.answer-summary-grid strong{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--gold-deep)}
+.answer-summary-grid span{font-size:.9rem;color:var(--muted)}
+.answer-address{margin-top:18px;font-size:.84rem;color:var(--muted)}
+.price-regular{display:inline-block;font:600 .78rem/1.2 'Inter',sans-serif;color:var(--muted);margin-left:8px;vertical-align:middle}
+@media(min-width:760px){.answer-summary-inner{padding:34px}.answer-summary-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:560px){.answer-summary-inner{padding:22px 18px}.price-regular{display:block;margin:6px 0 0}}
+"""
 
 def strip_keywords(html: str) -> str:
     return re.sub(r"\s*<meta\s+name=[\"']keywords[\"'][^>]*>", "", html, flags=re.I)
@@ -56,11 +71,6 @@ def replace_first(pattern: str, replacement: str, text: str, flags=re.I | re.S):
     return re.sub(pattern, replacement, text, count=1, flags=flags)
 
 
-def replace_meta_content(html: str, attr: str, value: str) -> str:
-    pattern = rf'(<meta\s+{attr}\s*=\s*["\'][^"\']+["\'][^>]*content\s*=\s*["\'])[^"\']*(["\'])'
-    return re.sub(pattern, lambda m: m.group(1) + value.replace('"', '&quot;') + m.group(2), html, count=1, flags=re.I)
-
-
 def homepage_metadata(html: str) -> str:
     html = replace_first(r"<title>.*?</title>", f"<title>{TITLE}</title>", html)
     html = replace_first(
@@ -68,11 +78,13 @@ def homepage_metadata(html: str) -> str:
         f'<meta name="description" content="{DESCRIPTION}">',
         html,
     )
-    # Keep social previews aligned with the canonical page identity.
-    html = replace_first(r'(<meta\s+property=["\']og:title["\'][^>]*content=["\'])[^"\']*(["\'])', lambda m: m.group(1) + TITLE + m.group(2), html)
-    html = replace_first(r'(<meta\s+property=["\']og:description["\'][^>]*content=["\'])[^"\']*(["\'])', lambda m: m.group(1) + DESCRIPTION + m.group(2), html)
-    html = replace_first(r'(<meta\s+name=["\']twitter:title["\'][^>]*content=["\'])[^"\']*(["\'])', lambda m: m.group(1) + TITLE + m.group(2), html)
-    html = replace_first(r'(<meta\s+name=["\']twitter:description["\'][^>]*content=["\'])[^"\']*(["\'])', lambda m: m.group(1) + DESCRIPTION + m.group(2), html)
+    html = replace_first(r'(<meta\s+property=[\"\']og:title[\"\'][^>]*content=[\"\'])[^\"\']*([\"\'])', lambda m: m.group(1) + TITLE + m.group(2), html)
+    html = replace_first(r'(<meta\s+property=[\"\']og:description[\"\'][^>]*content=[\"\'])[^\"\']*([\"\'])', lambda m: m.group(1) + DESCRIPTION + m.group(2), html)
+    html = replace_first(r'(<meta\s+name=[\"\']twitter:title[\"\'][^>]*content=[\"\'])[^\"\']*([\"\'])', lambda m: m.group(1) + TITLE + m.group(2), html)
+    html = replace_first(r'(<meta\s+name=[\"\']twitter:description[\"\'][^>]*content=[\"\'])[^"']*([\"\'])', lambda m: m.group(1) + DESCRIPTION + m.group(2), html)
+    style = f'<style id="answer-summary-style">{ANSWER_SUMMARY_STYLE}</style>'
+    if 'id="answer-summary-style"' not in html:
+        html = html.replace("</head>", style + "</head>", 1)
     return html
 
 
@@ -108,7 +120,21 @@ def inject_answer_summary(html: str) -> str:
     </div>
   </div>
 </section>
-'''            html = re.sub(r"(<main[^>]*>)", r"\1" + section, html, count=1, flags=re.I)
+'''
+    pattern = r'(<section class="ann"[^>]*>.*?</section>)'
+    if re.search(pattern, html, flags=re.I | re.S):
+        return re.sub(pattern, lambda m: m.group(1) + section, html, count=1, flags=re.I | re.S)
+    return html.replace("<main", "<main", 1)
+
+
+def process_html(path: Path):
+    html = path.read_text(encoding="utf-8")
+    original = html
+    html = strip_keywords(html)
+    if path == DEPLOY / "index.html":
+        html = homepage_metadata(html)
+        html = inject_local_schema(html)
+        html = inject_answer_summary(html)
     if html != original:
         path.write_text(html, encoding="utf-8")
         return True
