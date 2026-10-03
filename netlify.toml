@@ -3,11 +3,13 @@
 
 [build]
   publish = "deploy"
-  command = "python3 scripts/seo_finalize.py && python3 scripts/seo_validate.py"
+  command = "python3 scripts/pricing_finalize.py && python3 scripts/seo_finalize.py && python3 scripts/seo_validate.py"
 
 [build.environment]
   NODE_VERSION = "20"
   BW_OUT = "deploy"
 
-# SEO/GEO finalization and validation run as one batched build step immediately
-# before publish, so the production deployment happens only after all checks pass.
+# Pricing finalization, SEO/GEO finalization and validation run as one batched
+# build step immediately before publish, so the production deployment happens
+# only after all checks pass. Anniversary pricing runs through 15 Oct 2026;
+# regular pricing is applied automatically from 16 Oct 2026.
