@@ -12,7 +12,19 @@ robots = (DEPLOY / "robots.txt").read_text(encoding="utf-8")
 sitemap = (DEPLOY / "sitemap.xml").read_text(encoding="utf-8")
 kerala_sitemap = DEPLOY / "sitemap-kerala.xml"
 
+ann_start = index.find('<section class="ann"')
+ann_end = index.find('</section>', ann_start) if ann_start >= 0 else -1
+summary_pos = index.find('id="answer-summary"')
+
 checks += [
+    ("answer summary present", summary_pos >= 0),
+    ("answer summary below hero", ann_end >= 0 and summary_pos > ann_end),
+    ("anniversary bunker price", "₹5,999" in index),
+    ("anniversary single price", "₹3,299" in index),
+    ("regular bunker price", "₹6,499" in index),
+    ("regular single price", "₹3,499" in index),
+    ("offer ends October 15", "October 15, 2026" in index or "15 October 2026" in index),
+    ("no stale MRP", "MRP" not in index and "₹10,999" not in index and "₹5,500" not in index),
     ("homepage title", "<title>Bunkworks | Hostel Beds & Bunk Beds Manufacturer in Kerala</title>" in index or "<title>Bunkworks | Hostel Beds &amp; Bunk Beds Manufacturer in Kerala</title>" in index),
     ("homepage description", "Bunkworks manufactures steel hostel beds" in index),
     ("no meta keywords", not re.search(r'<meta\s+name=["\']keywords["\']', index, re.I)),
