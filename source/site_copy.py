@@ -255,7 +255,7 @@ ABOUT_HTML = f'''
 <ul>
 <li><a href="/bunker-cot-double-decker-bed/"><strong>Steel bunker cots (double decker beds)</strong></a> — two decks on one galvanised steel frame, 1.40 m high, 200 kg total weight bearing (100 kg per deck).</li>
 <li><a href="/steel-single-cot/"><strong>Steel single cots</strong></a> — 6 × 2.5 ft, 40 cm high, 12mm plywood base, up to 100 kg.</li>
-<li><strong>Cots and folding beds</strong> and two named collections, <strong>Swadesh</strong> and <strong>Perunthachan</strong>, on request.</li>
+<li><strong>3-inch high density foam mattresses</strong> and two named collections, <strong>Swadesh</strong> and <strong>Perunthachan</strong>, on request.</li>
 </ul>
 <h2>How we build</h2>
 <p>Every frame is made from galvanised steel — zinc-coated inside and out — and finished with an epoxy coating. Decks and bases are 12mm plywood rather than thinner boards. Joints are bolted, and legs and platforms ship separately, so the furniture is easy to transport, assemble and repair.</p>

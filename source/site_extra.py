@@ -177,7 +177,7 @@ def footer():
    <div class="foot-brand"><a href="/"><img src="/images/bunkworks-logo.png" alt="Bunkworks logo — steel bunker cots, double decker beds and single cots for hostels, Kerala" width="{LOGO_W}" height="{LOGO_H}" loading="lazy"></a>
     <address><strong>Bunkworks</strong> — steel hostel furniture manufacturer<br>Kerala, India<br><a href="tel:+919072431550">{PHONE_TXT}</a> (call / WhatsApp)<br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="{GBP}" target="_blank" rel="noopener">Bunkworks Warehouse on Google</a></address>
     <div class="foot-cta"><a class="btn btn-wa" href="{wa('Hi Bunkworks, I have a question about your beds.')}" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn-gold" href="{P_BULK}">Bulk quote {ARROW}</a></div></div>
-   <nav class="foot-col" aria-label="Products"><h2>Products</h2><ul><li><a href="{P_BUNK}">Bunker cot / double decker bed</a></li><li><a href="{P_SINGLE}">Steel single cot</a></li><li><a href="/#cots">Cots &amp; folding beds</a></li><li><a href="/#collections">Swadesh &amp; Perunthachan</a></li><li><a href="/#pricing">{'5th Anniversary Offer' if ACTIVE else 'Prices'}</a></li></ul></nav>
+   <nav class="foot-col" aria-label="Products"><h2>Products</h2><ul><li><a href="{P_BUNK}">Bunker cot / double decker bed</a></li><li><a href="{P_SINGLE}">Steel single cot</a></li><li><a href="/#mattress">Foam mattress</a></li><li><a href="/#collections">Swadesh &amp; Perunthachan</a></li><li><a href="/#pricing">{'5th Anniversary Offer' if ACTIVE else 'Prices'}</a></li></ul></nav>
    <nav class="foot-col" aria-label="Guides"><h2>Guides</h2><ul>{guides}<li><a href="/blog/">All guides &amp; blog</a></li></ul></nav>
    <nav class="foot-col" aria-label="Company"><h2>Company</h2><ul><li><a href="/about/">About Bunkworks</a></li><li><a href="/contact/">Contact</a></li><li><a href="{P_BULK}">Bulk order quote</a></li><li><a href="/#projects">Hostel projects</a></li><li><a href="/sitemap/">Sitemap</a></li></ul></nav>
    <nav class="foot-col" aria-label="Legal"><h2>Legal</h2><ul><li><a href="/privacy-policy/">Privacy policy</a></li><li><a href="/terms/">Terms of sale &amp; use</a></li><li><a href="/shipping-delivery/">Shipping &amp; delivery</a></li></ul></nav>
@@ -263,7 +263,7 @@ ORG.update({"areaServed": "IN", "contactPoint": [{"@type": "ContactPoint", "tele
 
 # ------------------------------------------------------------------ shared blocks
 def quote_form(default_product='Bunker cots / double decker beds', heading_units='Number of pieces'):
-    opts = ['Bunker cots / double decker beds', 'Steel single cots', 'Bunker cots and single cots', 'Cots & folding beds', 'Swadesh series', 'Perunthachan series']
+    opts = ['Bunker cots / double decker beds', 'Steel single cots', 'Bunker cots and single cots', '3 inch foam mattress', 'Swadesh series', 'Perunthachan series']
     o = ''.join(f'<option{" selected" if x == default_product else ""}>{H.escape(x)}</option>' for x in opts)
     return f'''<form class="form" id="quoteForm" action="mailto:{EMAIL}" method="post" enctype="text/plain">
    <div><label for="q-name">Name</label><input id="q-name" name="Name" autocomplete="name" required></div>
