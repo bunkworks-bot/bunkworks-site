@@ -89,34 +89,26 @@ def inject_local_schema(html: str) -> str:
 def inject_answer_summary(html: str) -> str:
     if 'id="answer-summary"' in html:
         return html
-    section = '''<section id="answer-summary" class="section" aria-labelledby="answer-summary-title">
-  <div class="container">
-    <h2 id="answer-summary-title">Bunkworks at a glance</h2>
-    <p><strong>Bunkworks is a furniture manufacturer based in Kochi, Kerala.</strong> The company supplies steel hostel beds, bunk beds, bunker cots, double-decker beds and steel single cots for hostels, PGs, dormitories and institutions, including bulk and custom-size requirements.</p>
-    <p>Business address: First Floor, SRA-53, Shanthinagar Rd, Chakkarapparambu, Vennala, Kochi, Ernakulam, Kerala 682028, India.</p>
+    section = '''
+<section id="answer-summary" class="section answer-summary" aria-labelledby="answer-summary-title">
+  <div class="wrap">
+    <div class="answer-summary-inner">
+      <div class="answer-summary-copy">
+        <span class="eyebrow">At a glance</span>
+        <h2 id="answer-summary-title">Hostel furniture from Kochi, Kerala</h2>
+        <p>Bunkworks manufactures steel hostel beds, bunk beds, bunker cots, double-decker beds and steel single cots for hostels, PGs, dormitories and institutions.</p>
+      </div>
+      <div class="answer-summary-grid" aria-label="Bunkworks key facts">
+        <div><strong>Based in</strong><span>Kochi, Ernakulam, Kerala</span></div>
+        <div><strong>Delivery</strong><span>Enquiries across all 14 Kerala districts</span></div>
+        <div><strong>Orders</strong><span>Single units, bulk and custom-size enquiries</span></div>
+        <div><strong>Call / WhatsApp</strong><span>+91 90724 31550</span></div>
+      </div>
+      <p class="answer-address"><strong>Business address:</strong> First Floor, SRA-53, Shanthinagar Rd, Chakkarapparambu, Vennala, Kochi, Ernakulam, Kerala 682028, India.</p>
+    </div>
   </div>
-</section>\n'''
-    return html.replace("<main", "<main", 1).replace(">", ">" + section, 1) if "<main" in html else html
-
-
-def process_html(path: Path):
-    html = path.read_text(encoding="utf-8")
-    original = html
-    html = strip_keywords(html)
-    if path == DEPLOY / "index.html":
-        html = homepage_metadata(html)
-        html = inject_local_schema(html)
-        # Add a concise, visible entity summary for people and answer engines.
-        # Insert immediately after the opening <main> tag.
-        if 'id="answer-summary"' not in html:
-            section = '''\n<section id="answer-summary" class="section" aria-labelledby="answer-summary-title">
-  <div class="container">
-    <h2 id="answer-summary-title">Bunkworks at a glance</h2>
-    <p><strong>Bunkworks is a furniture manufacturer based in Kochi, Kerala.</strong> The company supplies steel hostel beds, bunk beds, bunker cots, double-decker beds and steel single cots for hostels, PGs, dormitories and institutions, including bulk and custom-size requirements.</p>
-    <p>Business address: First Floor, SRA-53, Shanthinagar Rd, Chakkarapparambu, Vennala, Kochi, Ernakulam, Kerala 682028, India.</p>
-  </div>
-</section>\n'''
-            html = re.sub(r"(<main[^>]*>)", r"\1" + section, html, count=1, flags=re.I)
+</section>
+'''            html = re.sub(r"(<main[^>]*>)", r"\1" + section, html, count=1, flags=re.I)
     if html != original:
         path.write_text(html, encoding="utf-8")
         return True
