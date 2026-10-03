@@ -44,4 +44,6 @@ User-agent: *
 Allow: /
 Disallow: /404.html
 
+# XML sitemaps
 Sitemap: https://www.bunkworks.com/sitemap.xml
+Sitemap: https://www.bunkworks.com/sitemap-kerala.xml
