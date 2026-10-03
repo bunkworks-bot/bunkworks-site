@@ -3,7 +3,7 @@
 
 [build]
   publish = "deploy"
-  command = "python3 scripts/pricing_finalize.py && python3 scripts/seo_finalize.py && python3 scripts/seo_validate.py"
+  command = "python3 scripts/pricing_finalize.py && python3 scripts/pricing_copy_finalize.py && python3 scripts/seo_finalize.py && python3 scripts/seo_validate.py"
 
 [build.environment]
   NODE_VERSION = "20"
