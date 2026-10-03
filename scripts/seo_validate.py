@@ -1,3 +1,4 @@
+from datetime import date
 from pathlib import Path
 import json
 import re
@@ -5,6 +6,7 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 DEPLOY = ROOT / "deploy"
 SITE = "https://www.bunkworks.com"
+CAMPAIGN_ACTIVE = date.today() <= date(2026, 10, 15)  # anniversary prices are removed from 16 Oct 2026
 
 checks = []
 index = (DEPLOY / "index.html").read_text(encoding="utf-8")
@@ -19,8 +21,8 @@ summary_pos = index.find('id="answer-summary"')
 checks += [
     ("answer summary present", summary_pos >= 0),
     ("answer summary below hero", ann_end >= 0 and summary_pos > ann_end),
-    ("anniversary bunker price", "₹5,999" in index),
-    ("anniversary single price", "₹3,299" in index),
+    ("anniversary bunker price", (not CAMPAIGN_ACTIVE) or "₹5,999" in index),
+    ("anniversary single price", (not CAMPAIGN_ACTIVE) or "₹3,299" in index),
     ("regular bunker price", "₹6,499" in index),
     ("regular single price", "₹3,499" in index),
     ("offer ends October 15", "October 15, 2026" in index or "15 October 2026" in index),

@@ -482,7 +482,7 @@ def ann_hero():
   <a class="ann-deal" href="{wb}" target="_blank" rel="noopener" aria-label="Book steel bunk bed at {B} rupees on WhatsApp"><span class="dn">Steel bunk bed<small>Bunker cot / double decker</small></span><span class="dp blink">₹{B}</span><span class="dw"><s>₹{BR}</s> regular from 16 Oct</span></a>
   <a class="ann-deal" href="{ws}" target="_blank" rel="noopener" aria-label="Book steel single cot at {S} rupees on WhatsApp"><span class="dn">Steel single cot<small>6 × 2.5 ft hostel bed</small></span><span class="dp blink">₹{S}</span><span class="dw"><s>₹{SR}</s> regular from 16 Oct</span></a>
  </div>
- <p class="ann-limited" data-offer-only><span class="pulse" aria-hidden="true"></span>Limited pieces left — book your order now</p>
+ <p class="ann-limited" data-offer-only><span class="pulse" aria-hidden="true"></span>Limited pieces left — offer ends {OFFER["end_label"]["en"]}, book your order now</p>
  <div class="ann-ctas"><a class="btn btn-foil" href="{wg}" target="_blank" rel="noopener">Book your order now {ARROW}</a><a class="btn btn-ghost" href="#pricing">See all prices</a></div>
  <p class="ann-fine">Prices per piece, without mattress. Buying {OFFER["bulk_min"]}+ pieces? <a href="{WA_BULK}" target="_blank" rel="noopener">Get a bulk quote</a></p>
 </div></div>

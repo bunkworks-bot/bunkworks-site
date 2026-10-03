@@ -1,6 +1,6 @@
 
 (function(){
- var END=new Date('2026-10-05T23:59:59+05:30').getTime(),expired=false,cds=document.querySelectorAll('[data-cd]'),pop=document.getElementById('offerPop'),lastF=null;
+ var END=new Date('2026-10-15T23:59:59+05:30').getTime(),expired=false,cds=document.querySelectorAll('[data-cd]'),pop=document.getElementById('offerPop'),lastF=null;
  function pad(n){return n<10?'0'+n:''+n}
  function setCd(ms){var s=Math.max(0,Math.floor(ms/1000)),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),c=s%60;
   cds.forEach(function(el){var q=function(k){return el.querySelector('[data-'+k+']')};if(q('d')){q('d').textContent=pad(d);q('h').textContent=pad(h);q('m').textContent=pad(m);q('s').textContent=pad(c)}})}

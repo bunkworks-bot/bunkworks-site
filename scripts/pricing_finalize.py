@@ -28,9 +28,8 @@ def process(path: Path, campaign_active: bool) -> bool:
         html = replace_price(html, '"price": "3300"', '"price": "3299"')
         html = replace_price(html, '"price": "5999"', '"price": "5999"')
         html = replace_price(html, "2026-10-05", "2026-10-15")
-        html = replace_price(html, "5 October 2026", "15 October 2026")
-        html = replace_price(html, "until 5 October 2026", "until 15 October 2026")
-        html = replace_price(html, "until 5 October 2026 or while stock lasts", "until 15 October 2026 or while stock lasts")
+        # (?<!\d) keeps "15 October 2026" from being rewritten to "115 October 2026" on re-runs.
+        html = re.sub(r"(?<!\d)5 October 2026", "15 October 2026", html)
         html = replace_price(html, "Single cot <b class=\"blink\">₹3,300</b>", "Single cot <b class=\"blink\">₹3,299</b>")
     else:
         # After the anniversary campaign, automatically switch all public pricing
