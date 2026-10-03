@@ -16,7 +16,11 @@
     if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
   var seen=false;try{seen=sessionStorage.getItem('bwPop')==='1'}catch(e){}
   if(!seen)setTimeout(openPop,8000)}
- if(Date.now()>END){expire()}else{setCd(END-Date.now());setInterval(function(){var ms=END-Date.now();if(ms<=0){expire();return}setCd(ms)},1000)}
+ var off=0,started=false;function now(){return Date.now()+off}
+ function tick(){var ms=END-now();if(ms<=0){expire();return}setCd(ms)}
+ function start(){if(started)return;started=true;tick();if(!expired)setInterval(tick,1000)}
+ try{fetch('/',{method:'HEAD',cache:'no-store'}).then(function(r){var d=Date.parse(r.headers.get('Date')||'');if(d)off=d-Date.now();start()}).catch(start)}catch(e){start()}
+ setTimeout(start,1500)
  document.querySelectorAll('[data-year]').forEach(function(e){e.textContent=new Date().getFullYear()});
  var b=document.getElementById('burger'),p=document.getElementById('mpanel');
  if(b&&p){b.addEventListener('click',function(){var o=p.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false')});

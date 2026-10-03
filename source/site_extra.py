@@ -136,7 +136,11 @@ COUNTDOWN_JS = r''' var END=new Date('__END_ISO__').getTime(),expired=false,cds=
     if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
   var seen=false;try{seen=sessionStorage.getItem('bwPop')==='1'}catch(e){}
   if(!seen)setTimeout(openPop,8000)}
- if(Date.now()>END){expire()}else{setCd(END-Date.now());setInterval(function(){var ms=END-Date.now();if(ms<=0){expire();return}setCd(ms)},1000)}
+ var off=0,started=false;function now(){return Date.now()+off}
+ function tick(){var ms=END-now();if(ms<=0){expire();return}setCd(ms)}
+ function start(){if(started)return;started=true;tick();if(!expired)setInterval(tick,1000)}
+ try{fetch('/',{method:'HEAD',cache:'no-store'}).then(function(r){var d=Date.parse(r.headers.get('Date')||'');if(d)off=d-Date.now();start()}).catch(start)}catch(e){start()}
+ setTimeout(start,1500)
 '''
 _a = JS.index(" var END="); _b = JS.index(" document.querySelectorAll('[data-year]')")
 JS = JS[:_a] + COUNTDOWN_JS.replace('__END_ISO__', END_ISO) + JS[_b:]
@@ -145,7 +149,7 @@ CSS = CSS + EXTRA_CSS
 # ------------------------------------------------------------------ header / banner / footer / pop-up
 NAV_ITEMS = [(P_BUNK, 'Bunker Cots'), (P_SINGLE, 'Single Cots'), ('/#pricing', OFFER_LABEL), (P_BULK, 'Bulk Quote'),
              ('/blog/', 'Guides'), ('/about/', 'About'), ('/contact/', 'Contact')]
-CD_INLINE = '<span class="ob-cd" data-cd>Ends in <b data-d>07</b>d <b data-h>00</b>h <b data-m>00</b>m <b data-s>00</b>s</span>'
+CD_INLINE = '<span class="ob-cd" data-cd>Ends in <b data-d>--</b>d <b data-h>--</b>h <b data-m>--</b>m <b data-s>--</b>s</span>'
 
 def banner():
     if not ACTIVE: return ''
@@ -206,7 +210,7 @@ def popup():
    <div class="pop-prices"><div class="pop-price"><small>Bunker cot</small><b class="blink">₹{B}</b><s>₹{BR}</s><em class="save">Save ₹{OFFER["bunk_reg"]-OFFER["bunk"]}</em></div><div class="pop-price"><small>Single cot</small><b class="blink">₹{S}</b><s>₹{SR}</s><em class="save">Save ₹{OFFER["single_reg"]-OFFER["single"]}</em></div></div>
    <p class="pop-limited"><span class="pulse" aria-hidden="true"></span>Limited pieces left — order before the timer ends</p>
    <p class="pop-lbl">Offer ends in</p>
-   <div class="cd" data-cd role="timer" aria-label="Time left in the offer"><div><b data-d>07</b><span>Days</span></div><div><b data-h>00</b><span>Hours</span></div><div><b data-m>00</b><span>Minutes</span></div><div><b data-s>00</b><span>Seconds</span></div></div>
+   <div class="cd" data-cd role="timer" aria-label="Time left in the offer"><div><b data-d>--</b><span>Days</span></div><div><b data-h>--</b><span>Hours</span></div><div><b data-m>--</b><span>Minutes</span></div><div><b data-s>--</b><span>Seconds</span></div></div>
    <div class="pop-cta"><a class="btn btn-foil" href="{wg}" target="_blank" rel="noopener">Order now on WhatsApp {ARROW}</a><a class="btn btn-ghost" href="{P_BULK}">Bulk quote (50+)</a></div>
    <button class="pop-no" data-close>No thanks, I'll browse</button>
   </div>
