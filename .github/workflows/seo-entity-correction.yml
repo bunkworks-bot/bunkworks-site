@@ -32,3 +32,4 @@ jobs:
           git push
 
 # One-time repository correction; remove this workflow after the generated files are committed.
+# Trigger 2: robust regex patch.
