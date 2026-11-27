@@ -32,7 +32,7 @@ checks += [
     ("no meta keywords", not re.search(r'<meta\s+name=["\']keywords["\']', index, re.I)),
     ("canonical homepage", '<link rel="canonical" href="https://www.bunkworks.com/">' in index),
     ("local business schema", '"@id": "https://www.bunkworks.com/#localbusiness"' in index),
-    ("business phone", "+91 90724 31550" in index or "+91-9072431550" in index),
+    ("business phone", "+91 87142 59338" in index or "+91-8714259338" in index),
     ("robots sitemap", "Sitemap: https://www.bunkworks.com/sitemap.xml" in robots),
     ("Kerala sitemap reference", "Sitemap: https://www.bunkworks.com/sitemap-kerala.xml" in robots),
     ("main sitemap exists", "<urlset" in sitemap and "www.bunkworks.com" in sitemap),
