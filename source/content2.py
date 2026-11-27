@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import re, html as H, datetime
 from urllib.parse import quote as _q
-WA_NUM = '919072431550'; EMAIL = 'bunkworksindia@gmail.com'
+WA_NUM = '918714259338'; EMAIL = 'bunkworksindia@gmail.com'
 WA_BULK = f'https://wa.me/{WA_NUM}?text=' + _q("Hi Bunkworks, I'd like a bulk quote for more than 50 pieces. Product: , Quantity: , Delivery city: ")
 MAIL_BULK = f'mailto:{EMAIL}?subject=' + _q('Bulk quote request')
 from content import POSTS as BASE, UI, inr
