@@ -184,7 +184,7 @@ def footer():
  <div class="wrap">
   <div class="foot-grid">
    <div class="foot-brand"><a href="/"><img src="/images/bunkworks-logo.png" alt="Bunkworks logo — steel bunker cots, double decker beds and single cots for hostels, Kerala" width="{LOGO_W}" height="{LOGO_H}" loading="lazy"></a>
-    <address><strong>Bunkworks</strong> — steel hostel furniture manufacturer<br>Kerala, India<br><a href="tel:+919072431550">{PHONE_TXT}</a> (call / WhatsApp)<br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="{GBP}" target="_blank" rel="noopener">Bunkworks Warehouse on Google</a></address>
+    <address><strong>Bunkworks</strong> — steel hostel furniture manufacturer<br>Kerala, India<br><a href="tel:+918714259338">{PHONE_TXT}</a> (call / WhatsApp)<br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="{GBP}" target="_blank" rel="noopener">Bunkworks Warehouse on Google</a></address>
     <div class="foot-cta"><a class="btn btn-wa" href="{wa('Hi Bunkworks, I have a question about your beds.')}" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn-gold" href="{P_BULK}">Bulk quote {ARROW}</a></div></div>
    <nav class="foot-col" aria-label="Products"><h2>Products</h2><ul><li><a href="{P_BUNK}">Bunker cot / double decker bed</a></li><li><a href="{P_SINGLE}">Steel single cot</a></li><li><a href="/#mattress">Foam mattress</a></li><li><a href="/#collections">Swadesh &amp; Perunthachan</a></li><li><a href="/#pricing">{'5th Anniversary Offer' if ACTIVE else 'Prices'}</a></li></ul></nav>
    <nav class="foot-col" aria-label="Guides"><h2>Guides</h2><ul>{guides}<li><a href="/blog/">All guides &amp; blog</a></li></ul></nav>
@@ -266,7 +266,7 @@ def page(path, title, desc, body, lang='en', og_image='/og-image.jpg', og_type='
 </body>
 </html>'''
 
-ORG.update({"areaServed": "IN", "contactPoint": [{"@type": "ContactPoint", "telephone": "+91-9072431550", "email": EMAIL, "contactType": "sales",
+ORG.update({"areaServed": "IN", "contactPoint": [{"@type": "ContactPoint", "telephone": "+91-8714259338", "email": EMAIL, "contactType": "sales",
             "areaServed": "IN", "availableLanguage": ["English", "Malayalam", "Hindi"]}],
             "knowsAbout": ["bunker cots", "double decker beds", "bunk beds", "single cots", "hostel furniture", "galvanised steel furniture"]})
 
@@ -291,7 +291,7 @@ def bulk_band(product_label, default_product, heading_id='bulk-h'):
   <div><span class="eyebrow">Bulk quote — {NMIN}+ pieces</span><h2 id="{heading_id}">Get a bulk quote for {H.escape(product_label)}</h2>
    <p>Factory-direct pricing, custom sizes and delivery planned for your opening date. Tell us the quantity and your city — we reply with a written quote.</p>
    <p><a class="btn btn-foil" href="{WA_BULK}" target="_blank" rel="noopener">Bulk quote on WhatsApp {ARROW}</a></p>
-   <p>Or call <a href="tel:+919072431550" style="color:#fff">{PHONE_TXT}</a> · email <a href="{MAIL_BULK}" style="color:#fff">{EMAIL}</a></p></div>
+   <p>Or call <a href="tel:+918714259338" style="color:#fff">{PHONE_TXT}</a> · email <a href="{MAIL_BULK}" style="color:#fff">{EMAIL}</a></p></div>
   {quote_form(default_product)}
  </div>
 </section>'''
@@ -460,7 +460,7 @@ def contact_page():
     ttl = 'Contact Bunkworks | WhatsApp, Phone & Email for Quotes'
     dsc = f'Contact Bunkworks, Kerala steel hostel furniture maker: WhatsApp or call {PHONE_TXT}, email {EMAIL}, or use the quote form.'
     cards = f'''<div class="contact-cards">
- <div class="contact-card"><h2>WhatsApp &amp; phone</h2><p><a href="tel:+919072431550"><strong>{PHONE_TXT}</strong></a></p><p>Fastest way to get a quote.</p><a class="btn btn-wa" href="{wa('Hi Bunkworks, I have a question about your beds.')}" target="_blank" rel="noopener">Chat on WhatsApp</a></div>
+ <div class="contact-card"><h2>WhatsApp &amp; phone</h2><p><a href="tel:+918714259338"><strong>{PHONE_TXT}</strong></a></p><p>Fastest way to get a quote.</p><a class="btn btn-wa" href="{wa('Hi Bunkworks, I have a question about your beds.')}" target="_blank" rel="noopener">Chat on WhatsApp</a></div>
  <div class="contact-card"><h2>Email</h2><p><a href="mailto:{EMAIL}"><strong>{EMAIL}</strong></a></p><p>For quotes, drawings and documents.</p><a class="btn btn-line" href="mailto:{EMAIL}">Send an email</a></div>
  <div class="contact-card"><h2>Find us</h2><p><strong>Bunkworks Warehouse</strong><br>Kerala, India</p><p>Workshop and warehouse.</p><a class="btn btn-line" href="{GBP}" target="_blank" rel="noopener">Open on Google</a></div></div>'''
     inner = f'<p class="lede">Questions about bunker cots, single cots, bulk orders or delivery? Reach Bunkworks by WhatsApp, phone or email, or use the quote form below.</p>{cards}<h2>Useful links</h2><ul><li><a href="{P_BULK}">Bulk order quote ({NMIN}+ pieces)</a></li><li><a href="{P_BUNK}">Steel bunker cot / double decker bed</a></li><li><a href="{P_SINGLE}">Steel single cot</a></li><li><a href="/shipping-delivery/">Shipping &amp; delivery</a></li></ul>'
