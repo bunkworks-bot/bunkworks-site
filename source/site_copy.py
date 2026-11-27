@@ -5,7 +5,7 @@ from content import inr
 from content2 import OFFER, ACTIVE, B, BR, S, SR, PB, PS, swap, WA_BULK, MAIL_BULK, EMAIL
 
 PCT = OFFER['off_pct']; NMIN = OFFER['bulk_min']; END = OFFER['end_label']['en']
-PHONE_TXT = '+91 90724 31550'
+PHONE_TXT = '+91 87142 59338'
 UPDATED = '28 September 2026'
 def T(n, p): return inr(n * p)
 
@@ -291,7 +291,7 @@ def privacy_html():
 <h2>Changes to this policy</h2>
 <p>We may update this policy and will change the date above when we do.</p>
 <h2>Contact</h2>
-<p>Bunkworks, Kerala, India · <a href="tel:+919072431550">{PHONE_TXT}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a></p>
+<p>Bunkworks, Kerala, India · <a href="tel:+918714259338">{PHONE_TXT}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a></p>
 '''
 
 def terms_html():
@@ -317,7 +317,7 @@ def terms_html():
 <h2>9. Governing law</h2>
 <p>These terms are governed by the laws of India, and the courts in Kerala have jurisdiction, subject to any mandatory consumer-protection rules.</p>
 <h2>10. Contact</h2>
-<p><a href="tel:+919072431550">{PHONE_TXT}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a></p>
+<p><a href="tel:+918714259338">{PHONE_TXT}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a></p>
 '''
 
 def shipping_html():
@@ -334,5 +334,5 @@ def shipping_html():
 <h2>Timelines and costs</h2>
 <p>Lead times depend on stock and the size of the order and are stated in your quote. Delivery charges, GST and installation, where applicable, are also stated in the quote.</p>
 <h2>Questions?</h2>
-<p>WhatsApp <a href="tel:+919072431550">{PHONE_TXT}</a> or email <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
+<p>WhatsApp <a href="tel:+918714259338">{PHONE_TXT}</a> or email <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
 '''
