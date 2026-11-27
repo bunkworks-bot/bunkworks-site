@@ -8,8 +8,8 @@ OUT = os.environ.get('BW_OUT','/home/claude/site')
 SITE = 'https://www.bunkworks.com'
 META = json.load(open('/home/claude/img_meta.json'))
 LOGO_W, LOGO_H = META['logo']
-PHONE = '9072431550'
-WA = 'https://wa.me/919072431550'
+PHONE = '8714259338'
+WA = 'https://wa.me/918714259338'
 EMAIL = 'bunkworksindia@gmail.com'
 GBP = 'https://share.google/lSNdgoG97YMX7hqwc'
 from urllib.parse import quote as _q
@@ -421,7 +421,7 @@ JS = r'''
   d.forEach(function(x,k){x.addEventListener('click',function(){show(k);go()})});go();}
  var f=document.getElementById('quoteForm');
  if(f){var msg=function(){var t='Hi Bunkworks, quote request:\n';new FormData(f).forEach(function(v,k){if(v)t+=k+': '+v+'\n'});return t};
-  f.addEventListener('submit',function(e){e.preventDefault();if(!f.reportValidity())return;window.open('https://wa.me/919072431550?text='+encodeURIComponent(msg()),'_blank','noopener')});
+  f.addEventListener('submit',function(e){e.preventDefault();if(!f.reportValidity())return;window.open('https://wa.me/918714259338?text='+encodeURIComponent(msg()),'_blank','noopener')});
   var eb=document.getElementById('emailBtn');if(eb)eb.addEventListener('click',function(){if(!f.reportValidity())return;location.href='mailto:bunkworksindia@gmail.com?subject='+encodeURIComponent('Quote request')+'&body='+encodeURIComponent(msg())});}
  var chips=document.querySelectorAll('.chips button');
  chips.forEach(function(c){c.addEventListener('click',function(){var l=c.dataset.lang;
@@ -513,7 +513,7 @@ def footer():
    <div class="foot-brand"><img src="/images/bunkworks-logo.png" alt="Bunkworks logo — steel bunk beds, double decker cots and single cots for hostels, Kerala" width="{LOGO_W}" height="{LOGO_H}" loading="lazy"><p>Hostel and institutional furniture, manufactured in Kerala, India. Factory-direct bunk beds, single beds and cots.</p></div>
    <div class="foot-col"><h2>Quick links</h2><ul><li><a href="/bunker-cot-double-decker-bed/">Steel bunk beds</a></li><li><a href="/steel-single-cot/">Steel single cots</a></li><li><a href="/#pricing">Anniversary offer prices</a></li><li><a href="/#mattress">Foam mattress</a></li><li><a href="/#collections">Collections</a></li></ul></div>
    <div class="foot-col"><h2>Guides</h2><ul>{guides}<li><a href="/blog/">All articles</a></li></ul></div>
-   <div class="foot-col"><h2>Get in touch</h2><div class="foot-touch"><a class="btn btn-wa" href="{wa('Hi Bunkworks, I have a question about your beds.')}" target="_blank" rel="noopener">Chat on WhatsApp</a><a class="btn btn-gold" href="/#enquire">Get a Quote {ARROW}</a><a href="tel:+919072431550" style="font-size:.9rem;color:var(--muted)">+91 90724 31550</a><a href="mailto:{EMAIL}" style="font-size:.9rem;color:var(--muted)">{EMAIL}</a><a href="{GBP}" target="_blank" rel="noopener" style="font-size:.9rem;color:var(--muted)">Bunkworks Warehouse on Google</a></div></div>
+   <div class="foot-col"><h2>Get in touch</h2><div class="foot-touch"><a class="btn btn-wa" href="{wa('Hi Bunkworks, I have a question about your beds.')}" target="_blank" rel="noopener">Chat on WhatsApp</a><a class="btn btn-gold" href="/#enquire">Get a Quote {ARROW}</a><a href="tel:+918714259338" style="font-size:.9rem;color:var(--muted)">+91 87142 59338</a><a href="mailto:{EMAIL}" style="font-size:.9rem;color:var(--muted)">{EMAIL}</a><a href="{GBP}" target="_blank" rel="noopener" style="font-size:.9rem;color:var(--muted)">Bunkworks Warehouse on Google</a></div></div>
   </div>
   <div class="foot-bottom"><span>© <span data-year>2026</span> Bunkworks. {TAGLINE}.</span><span><a href="/#about">About</a> &nbsp; <a href="/#process">Our process</a> &nbsp; <a href="/sitemap.xml">Sitemap</a></span></div>
  </div>
@@ -523,7 +523,7 @@ def short(p): return p['short']
 ORG = {"@context": "https://schema.org", "@type": "Organization", "@id": SITE + "/#org", "name": "Bunkworks", "url": SITE + "/",
        "logo": SITE + "/images/bunkworks-logo-square.png", "image": SITE + "/og-image.jpg", "email": EMAIL, "slogan": TAGLINE,
        "description": "Manufacturer of galvanised steel bunk beds, single beds and cots for hostels, PGs, dormitories and institutions.",
-       "address": {"@type": "PostalAddress", "streetAddress": "First Floor, SRA-53, Shanthinagar Rd", "addressLocality": "Chakkarapparambu, Vennela", "addressRegion": "Kerala", "postalCode": "682028", "addressCountry": "IN"}, "telephone": "+91-9072431550", "sameAs": [GBP]}
+       "address": {"@type": "PostalAddress", "streetAddress": "First Floor, SRA-53, Shanthinagar Rd", "addressLocality": "Chakkarapparambu, Vennela", "addressRegion": "Kerala", "postalCode": "682028", "addressCountry": "IN"}, "telephone": "+91-8714259338", "sameAs": [GBP]}
 
 def page(path, title, desc, body, lang='en', og_image='/og-image.jpg', og_type='website', ld=(), extra_head='', keywords='', robots='index, follow'):
     ldj = ''.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
@@ -619,7 +619,7 @@ def home():
      <ul><li>Galvanised anti-rust steel frame</li><li>12mm plywood base, up to 100 kg</li><li>Epoxy coated, anti-skid feet</li></ul>
      <div class="pc-ctas"><a class="btn btn-gold" href="{wa(f'Hi Bunkworks, I want to book steel single cots at ₹{S if ACTIVE else SR}. Quantity: , Delivery city: ')}" target="_blank" rel="noopener">Book now on WhatsApp</a><a class="btn btn-line" href="/steel-single-cot/">Details</a></div></div></article>
   </div>
-  <p class="fine"><strong>Buying more than {OFFER["bulk_min"]} pieces?</strong> <a href="{WA_BULK}" target="_blank" rel="noopener">Get a bulk quote on WhatsApp (+91 90724 31550)</a> or email <a href="{MAIL_BULK}">{EMAIL}</a>.</p>
+  <p class="fine"><strong>Buying more than {OFFER["bulk_min"]} pieces?</strong> <a href="{WA_BULK}" target="_blank" rel="noopener">Get a bulk quote on WhatsApp (+91 87142 59338)</a> or email <a href="{MAIL_BULK}">{EMAIL}</a>.</p>
  </div>
 </section>
 
@@ -719,7 +719,7 @@ def home():
  <div class="wrap enq-grid">
   <div><span class="eyebrow">Get a quote</span><h2 id="enq-h">Ready to furnish your hostel?</h2>
    <p>Tell us what you need and where. We will reply with a factory-direct quote, lead time and delivery cost.</p>
-   <p>WhatsApp or call <a href="tel:+919072431550" style="color:#fff">+91 90724 31550</a>. Email <a href="mailto:{EMAIL}" style="color:#fff">{EMAIL}</a>.</p>
+   <p>WhatsApp or call <a href="tel:+918714259338" style="color:#fff">+91 87142 59338</a>. Email <a href="mailto:{EMAIL}" style="color:#fff">{EMAIL}</a>.</p>
    <p><a class="btn btn-gold" style="margin-top:6px" href="{WA_BULK}" target="_blank" rel="noopener">Bulk quote on WhatsApp {ARROW}</a></p></div>
   <form class="form" id="quoteForm" action="mailto:{EMAIL}" method="post" enctype="text/plain">
    <div><label for="q-name">Name</label><input id="q-name" name="Name" autocomplete="name" required></div>
